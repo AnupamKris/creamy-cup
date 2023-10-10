@@ -1,0 +1,535 @@
+// import poppins font all familes
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: #e9e9e9;
+
+  .logo {
+    font-size: 22px;
+    padding-left: 20px;
+    width: 160px;
+    font-family: "DIN Next Stencil";
+  }
+
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+
+    li {
+      margin: 0 10px;
+      a {
+        text-decoration: none;
+        color: #575757;
+        font-size: 14px;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .functions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+
+    ion-icon {
+      font-size: 20px;
+      margin: 0 10px;
+    }
+  }
+}
+
+.coffee-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  height: 300px;
+  width: 250px;
+
+  padding: 0 20px;
+  border-radius: 5px;
+
+  margin: 0 20px;
+
+  background: #ffffff;
+  img {
+    height: 120px;
+  }
+  button {
+    height: 30px;
+    padding: 0 20px;
+    border: none;
+    margin: 15px 0;
+    background: #532d28;
+    color: #fff;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #532d28;
+  }
+
+  p {
+    font-size: 14px;
+    color: #575757;
+    text-align: center;
+  }
+}
+
+.prod-card {
+  height: 350px;
+  width: 250px;
+
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  margin-left: 20px;
+  margin-bottom: 20px;
+
+  cursor: pointer;
+
+  &:hover {
+    .img {
+      img {
+        transform: scale(1.1) rotateZ(-3deg);
+      }
+    }
+  }
+
+  .img {
+    height: 200px;
+    width: 100%;
+    background: #c78061;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      transition: 0.3s;
+      height: 80%;
+    }
+  }
+
+  .name {
+    font-weight: 600;
+    padding: 5px 10px;
+    padding-top: 10px;
+    width: 100%;
+  }
+
+  p {
+    padding: 0 10px;
+    width: 100%;
+    font-size: 14px;
+    color: #575757;
+    height: 42px;
+  }
+
+  .tags {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .tag {
+      height: 20px;
+      background: #141414;
+      color: #ffffff;
+      padding: 0 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 10px;
+      border-radius: 3px;
+      margin-left: 10px;
+      text-transform: uppercase;
+    }
+  }
+
+  .price {
+    width: calc(100% - 20px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+
+    .cost {
+      padding: 5px;
+    }
+
+    .weight {
+      border: none;
+      background: #ececec;
+      color: #000000;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+  }
+}
+
+.app {
+  height: 100vh;
+  width: 100%;
+  .title {
+    padding-top: 70px;
+    height: 80%;
+    background: url("/bg.png");
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e9e9e9;
+
+    .text {
+      padding: 0 20px;
+      width: 30%;
+      span {
+        font-size: 48px;
+        font-weight: 600;
+        color: #532d28;
+        font-family: "DIN Next Stencil";
+        p {
+          font-size: 48px;
+        }
+      }
+
+      p {
+        font-size: 14px;
+        margin: 15px 0;
+      }
+
+      button {
+        height: 40px;
+        padding: 0 30px;
+        border: none;
+        margin: 15px 0;
+        background: #532d28;
+        color: #fff;
+      }
+    }
+
+    .image {
+      .dark {
+        height: 350px;
+      }
+      .spec {
+        height: 450px;
+        transform: translate(-200px, 14px);
+      }
+      .filt {
+        height: 375px;
+        transform: translate(130px, -5px);
+      }
+    }
+  }
+
+  .category {
+    background: url("bg.png");
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h1 {
+      font-size: 24px;
+      font-weight: 400;
+      color: #532d28;
+      margin: 10px 0;
+    }
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+.shop {
+  padding: 20px 0;
+  padding-top: 70px;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+
+  .input {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    input {
+      width: 90%;
+      border: none;
+      border-radius: 20px;
+      height: 40px;
+    }
+  }
+
+  .sidebar {
+    height: 100vh;
+    width: 250px;
+    background: #e9e9e9;
+    padding: 0 20px;
+    padding-top: 70px;
+    .filters {
+      span {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 16px;
+        font-weight: 600;
+        color: #575757;
+        margin: 10px 0;
+      }
+      .category {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .field {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin: 5px 0;
+          input {
+            width: 15px;
+            height: 15px;
+          }
+          label {
+            font-size: 14px;
+            color: #575757;
+          }
+        }
+      }
+    }
+  }
+  .container {
+    width: calc(100% - 250px);
+    height: 100vh;
+    overflow-y: scroll;
+    padding-top: 70px;
+    background: #e9e9e9;
+  }
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+  }
+}
+
+.product {
+  height: 100vh;
+  width: 100%;
+
+  padding-top: 70px;
+  background: #e9e9e9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .container {
+    height: 90%;
+    width: 90%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #ffffff00;
+    // align-items: center;
+    .image {
+      width: auto;
+      padding: 0 20px;
+      height: 80%;
+      width: 500px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffffff;
+      box-shadow: 15px 15px 25px 0px rgba(99, 99, 99, 0.75);
+
+      img {
+        height: 60%;
+        object-fit: cover;
+      }
+    }
+
+    .description {
+      width: calc(60% - 10px);
+      max-width: 500px;
+      height: 80%;
+      display: flex;
+      justify-content: center;
+      // align-items: center;
+      flex-direction: column;
+      padding: 20px 40px;
+      background: #303030;
+      color: #ffffff;
+      position: relative;
+
+      box-shadow: 15px 15px 25px 0px rgba(99, 99, 99, 0.75);
+      .reviews {
+        height: 500px;
+        overflow-y: scroll;
+      }
+      .rev {
+        height: auto;
+        .review {
+          margin-bottom: 15px;
+          .details {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .name {
+              font-size: 16px;
+              font-weight: 600;
+              color: #ffffff;
+            }
+            .date {
+              font-size: 12px;
+              color: #ffffff;
+            }
+          }
+
+          .rating {
+            color: #ffe23e;
+          }
+        }
+      }
+      .tags {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        .tag {
+          height: 20px;
+          background: #ffffff;
+          color: #141414;
+          padding: 0 5px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 10px;
+          border-radius: 3px;
+          margin: 10px 0;
+          margin-right: 10px;
+          text-transform: uppercase;
+        }
+      }
+
+      .ratings {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        .star {
+          font-size: 16px;
+          margin-right: 5px;
+          background: #000000;
+          color: #e9e9e9;
+          border-radius: 5px;
+          padding: 0 5px;
+
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+        }
+      }
+
+      .tabs {
+        position: absolute;
+        top: 30px;
+        height: 50px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        p {
+          margin-right: 10px;
+          height: 30px;
+          cursor: pointer;
+        }
+
+        .selected {
+          border-bottom: 2px solid #ffe23e;
+        }
+      }
+      // .sep {
+      //   height: 2px;
+      //   background: #e0e0e0;
+      //   width: 100%;
+      //   margin: 10px 0;
+      // }
+      .sub {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 7px;
+        margin-top: 15px;
+      }
+
+      .buttons {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        button {
+          width: 40%;
+          height: 50px;
+          border-radius: 25px;
+          border: none;
+          background: #ffe23e;
+          color: #000000;
+          margin: 20px 0;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

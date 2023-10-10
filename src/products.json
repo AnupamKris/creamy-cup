@@ -1,0 +1,171 @@
+{
+    "coorgspecialstrong": {
+        "image": "/creamy1.png",
+        "bgcolor": "#ecdab8",
+        "name": "Coorg Special Extra Strong",
+        "description": "Special Coffee with extra strong taste",
+        "tags": [
+            "Strong",
+            "Instant"
+        ],
+        "price": "360",
+        "weight": "300g",
+        "category": "special"
+    },
+    "coorgspecialsmooth": {
+        "image": "/creamy2.png",
+        "bgcolor": "#42201f",
+        "name": "Coorg Special Extra Strong",
+        "description": "Smooth Premium Coffee from the hills of Coorg",
+        "tags": [
+            "Smooth",
+            "Instant"
+        ],
+        "price": "340",
+        "weight": "300g",
+        "category": "special"
+    },
+    "darkchocolate": {
+        "image": "/dark.png",
+        "bgcolor": "#1c1a18",
+        "name": "Dark Chocolate",
+        "description": "Coffee but Dark Chocolate",
+        "tags": [
+            "Chocolate",
+            "Premium"
+        ],
+        "price": "360",
+        "weight": "250g",
+        "category": "chocolate"
+    },
+    "butterscotch": {
+        "image": "/butter.png",
+        "bgcolor": "#292b31",
+        "name": "Creamy Butter Scotch",
+        "description": "Instant Coffee with a hint of Butterscotch",
+        "tags": [
+            "Instant",
+            "Premium"
+        ],
+        "price": "360",
+        "weight": "250g",
+        "category": "special"
+    },
+    "blueberry": {
+        "image": "/blueberry.png",
+        "bgcolor": "#383b58",
+        "name": "Fruity Blueberry",
+        "description": "Instant Coffee with a hint of Blueberry",
+        "tags": [
+            "Instant",
+            "Premium"
+        ],
+        "price": "360",
+        "weight": "250g",
+        "category": "fruity"
+    },
+    "raspberry": {
+        "image": "/raspberry.png",
+        "bgcolor": "#b53552",
+        "name": "Fruity Raspberry",
+        "description": "Instant Coffee with a hint of Raspberry",
+        "tags": [
+            "Instant",
+            "Premium"
+        ],
+        "price": "360",
+        "weight": "250g",
+        "category": "fruity"
+    },
+    "mint": {
+        "image": "/mint.png",
+        "bgcolor": "#375b4b",
+        "name": "Cocoa Mint",
+        "description": "Instant Coffee with Chocolate and Mint",
+        "tags": [
+            "Instant",
+            "Premium"
+        ],
+        "price": "360",
+        "weight": "250g",
+        "category": "chocolate"
+    },
+    "hazlenut": {
+        "image": "/hazlenut.png",
+        "bgcolor": "#a2370e",
+        "name": "Nutty Hazlenut",
+        "description": "Instant Coffee with a hint of Hazlenut",
+        "tags": [
+            "Instant",
+            "Premium"
+        ],
+        "price": "360",
+        "weight": "250g",
+        "category": "special"
+    },
+    "vanilla": {
+        "image": "/vanilla.png",
+        "bgcolor": "#d4cbb5",
+        "name": "French Vanilla",
+        "description": "Instant Coffee with a hint of French Vanilla",
+        "tags": [
+            "Instant",
+            "Premium"
+        ],
+        "price": "360",
+        "weight": "250g",
+        "category": "special"
+    },
+    "caramel": {
+        "image": "/caramel.png",
+        "bgcolor": "#9f6434",
+        "name": "French Caramel",
+        "description": "Instant Coffee with a hint of French Caramel",
+        "tags": [
+            "Instant",
+            "Premium"
+        ],
+        "price": "360",
+        "weight": "250g",
+        "category": "special"
+    },
+    "gold": {
+        "image": "/gold.png",
+        "bgcolor": "#7a2445",
+        "name": "Gold",
+        "description": "Premium Coffee with original 100% Arabica Coffee taste",
+        "tags": [
+            "Instant",
+            "Premium"
+        ],
+        "price": "595",
+        "weight": "100g",
+        "category": "originals"
+    },
+    "ogfilter": {
+        "image": "/filter.png",
+        "bgcolor": "#141414",
+        "name": "Original Filter Coffee",
+        "description": "Original Filter Coffee",
+        "tags": [
+            "Filter",
+            "Premium"
+        ],
+        "price": "350",
+        "weight": "250g",
+        "category": "originals"
+    },
+    "ognormal": {
+        "image": "/normal.png",
+        "bgcolor": "#f1dbb6",
+        "name": "Original Coffee",
+        "description": "Original Coffee",
+        "tags": [
+            "Normal",
+            "Premium"
+        ],
+        "price": "350",
+        "weight": "250g",
+        "category": "originals"
+    }
+}
