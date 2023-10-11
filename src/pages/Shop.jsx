@@ -1,4 +1,3 @@
-import NavBar from "../components/NavBar";
 import { useState } from "react";
 import ProductCard from "../components/ProductCard";
 import products from "../products.json";
@@ -32,7 +31,6 @@ const shop = () => {
 
   return (
     <div className="shop">
-      <NavBar />
       <div className="sidebar">
         <div className="filters">
           <p>Filters</p>

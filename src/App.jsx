@@ -23,8 +23,9 @@ const products = {
 const App = () => {
   return (
     <div className="app">
-      <NavBar />
       <div className="title">
+        <img src="/coffee.png" alt="" className="right-img" />
+        <img src="/coffee.png" alt="" className="left-img" />
         <div className="text">
           <p>Exquisite Journey into Coorg's Arabica Bliss</p>
           <span>CREAMY CUP</span>

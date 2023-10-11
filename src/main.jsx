@@ -5,6 +5,15 @@ import "./App.scss";
 import About from "./pages/About.jsx";
 import Shop from "./pages/Shop.jsx";
 import Product from "./pages/Product.jsx";
+import SignIn from "./pages/SignIn.jsx";
+import Root from "./pages/Root.jsx";
+import Profile from "./pages/Profile.jsx";
+import CheckOut from "./pages/CheckOut.jsx";
+import Cart from "./pages/Cart.jsx";
+
+import store from "./store";
+import { Provider } from "react-redux";
+
 import {
   createBrowserRouter,
   Route,
@@ -15,28 +24,52 @@ import {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
-  },
-  {
-    path: "/about",
-    element: <About />,
-  },
-  {
-    path: "/shop",
-    element: <Shop />,
-  },
-  {
-    path: "/contact",
-    element: <h1>Contact</h1>,
-  },
-  {
-    path: "/product/:product",
-    element: <Product />,
+    element: <Root />,
+    children: [
+      {
+        path: "",
+        element: <App />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "/shop",
+        element: <Shop />,
+      },
+      {
+        path: "/contact",
+        element: <h1>Contact</h1>,
+      },
+      {
+        path: "/product/:product",
+        element: <Product />,
+      },
+      {
+        path: "/signin",
+        element: <SignIn />,
+      },
+      {
+        path: "/checkout",
+        element: <CheckOut />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+    ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );

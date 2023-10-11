@@ -1,6 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 const NavBar = () => {
+  const user = useSelector((state) => state.authState.user);
+  const cart = useSelector((state) => state.cart.cartItems);
+
   return (
     <nav>
       <div className="logo">CREAMY CUP</div>
@@ -19,10 +24,17 @@ const NavBar = () => {
         </li>
       </ul>
       <div className="functions">
-        <ion-icon name="search-outline"></ion-icon>
-        <ion-icon name="person-circle-outline"></ion-icon>
-        <ion-icon name="heart-outline"></ion-icon>
-        <ion-icon name="cart-outline"></ion-icon>
+        <Link to="cart" class="cart-icon">
+          <ion-icon name="cart-outline"></ion-icon>
+          {cart.length != 0 && <div className="count">{cart.length}</div>}
+        </Link>
+        <Link to={Object.keys(user).length != 0 ? "/profile" : "/signin"}>
+          {user.name ? (
+            <div className="user-icon">{user.name[0].toUpperCase()}</div>
+          ) : (
+            <ion-icon name="person-circle-outline"></ion-icon>
+          )}
+        </Link>
       </div>
     </nav>
   );

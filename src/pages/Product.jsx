@@ -1,15 +1,37 @@
 import { useParams } from "react-router-dom";
-import NavBar from "../components/NavBar";
 import products from "../products.json";
 import { useState } from "react";
 import Review from "../components/Review";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../cartSlice";
 const Product = () => {
   const { product } = useParams();
   const productData = products[product];
+  const cart = useSelector((state) => state.cart.cartItems);
+  const dispatch = useDispatch();
   const [currentTab, setCurrentTab] = useState("desc");
+
+  const addItemToCart = () => {
+    const index = cart.findIndex((item) => item.id === product);
+    if (index !== -1) {
+      dispatch(
+        addToCart({
+          ...cart[index],
+          quantity: cart[index].quantity + 1,
+        })
+      );
+      return;
+    }
+    dispatch(
+      addToCart({
+        id: product,
+        quantity: 1,
+      })
+    );
+  };
+
   return (
     <div className="product">
-      <NavBar />
       <div className="container">
         <div className="image">
           <img src={productData.image} alt="" />
@@ -17,13 +39,13 @@ const Product = () => {
         <div className="description">
           <div className="tabs">
             <p
-              class={currentTab == "desc" ? "selected" : ""}
+              className={currentTab == "desc" ? "selected" : ""}
               onClick={() => setCurrentTab("desc")}
             >
               Description
             </p>
             <p
-              class={currentTab == "rev" ? "selected" : ""}
+              className={currentTab == "rev" ? "selected" : ""}
               onClick={() => setCurrentTab("rev")}
             >
               Reviews
@@ -53,7 +75,7 @@ const Product = () => {
 
               <div className="buttons">
                 <button>Buy Now</button>
-                <button>Add to Cart</button>
+                <button onClick={addItemToCart}>Add to Cart</button>
               </div>
             </div>
           ) : (
