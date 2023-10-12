@@ -36,9 +36,7 @@ const App = () => {
           <button>Shop Now</button>
         </div>
         <div className="image">
-          <img className="dark" src="/dark.png" alt="" />
-          <img className="filt" src="/filter.png" alt="" />
-          <img className="spec" src="/creamy1.png" alt="" />
+          <img src="/homegrouped.png" alt="" />
         </div>
       </div>
       <div className="category">

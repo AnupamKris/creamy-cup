@@ -39,6 +39,7 @@ const Cart = () => {
           </p>
         </div>
       </div>
+      <button className="checkoutButton">Proceed To Checkout</button>
     </div>
   );
 };
