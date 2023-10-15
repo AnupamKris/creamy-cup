@@ -22,7 +22,7 @@ const EditProduct = ({ product, setShowEdit, productid }) => {
 
     data.stock = parseInt(data.stock);
     let res = await axios.post(
-      "http://dremerz-erp.com/creamycup/updateProduct",
+      "https://dremerz-erp.com/creamycup/updateProduct",
       {
         data,
       }

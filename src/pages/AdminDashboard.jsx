@@ -12,7 +12,7 @@ const AdminDashboard = () => {
   const [showAdd, setShowAdd] = useState(false);
   const [products, setProducts] = useState({});
   const getOrders = async () => {
-    let res = await axios.get("http://dremerz-erp.com/creamycup/orders");
+    let res = await axios.get("https://dremerz-erp.com/creamycup/orders");
   };
 
   const deleteProduct = async (productid) => {
@@ -21,7 +21,7 @@ const AdminDashboard = () => {
       return;
     }
     let res = await axios.post(
-      "http://dremerz-erp.com/creamycup/deleteProduct",
+      "https://dremerz-erp.com/creamycup/deleteProduct",
       {
         product_id: productid,
       }
@@ -34,7 +34,7 @@ const AdminDashboard = () => {
   };
 
   const getProducts = async () => {
-    let res = await axios.get("http://dremerz-erp.com/creamycup/products");
+    let res = await axios.get("https://dremerz-erp.com/creamycup/products");
     console.log(res);
     setProducts(res.data);
   };
