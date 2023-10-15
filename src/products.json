@@ -1,5 +1,5 @@
 {
-    "coorgspecialstrong": {
+    "1": {
         "image": "/creamy1.png",
         "bgcolor": "#ecdab8",
         "name": "Coorg Special Extra Strong",
@@ -10,9 +10,10 @@
         ],
         "price": "360",
         "weight": "300g",
-        "category": "special"
+        "category": "special",
+        "stocks": 0
     },
-    "coorgspecialsmooth": {
+    "2": {
         "image": "/creamy2.png",
         "bgcolor": "#42201f",
         "name": "Coorg Special Extra Strong",
@@ -23,9 +24,10 @@
         ],
         "price": "340",
         "weight": "300g",
-        "category": "special"
+        "category": "special",
+        "stocks": 0
     },
-    "darkchocolate": {
+    "3": {
         "image": "/dark.png",
         "bgcolor": "#1c1a18",
         "name": "Dark Chocolate",
@@ -36,9 +38,10 @@
         ],
         "price": "360",
         "weight": "250g",
-        "category": "chocolate"
+        "category": "chocolate",
+        "stocks": 0
     },
-    "butterscotch": {
+    "4": {
         "image": "/butter.png",
         "bgcolor": "#292b31",
         "name": "Creamy Butter Scotch",
@@ -49,9 +52,10 @@
         ],
         "price": "360",
         "weight": "250g",
-        "category": "special"
+        "category": "special",
+        "stocks": 0
     },
-    "blueberry": {
+    "5": {
         "image": "/blueberry.png",
         "bgcolor": "#383b58",
         "name": "Fruity Blueberry",
@@ -62,9 +66,10 @@
         ],
         "price": "360",
         "weight": "250g",
-        "category": "fruity"
+        "category": "fruity",
+        "stocks": 0
     },
-    "raspberry": {
+    "6": {
         "image": "/raspberry.png",
         "bgcolor": "#b53552",
         "name": "Fruity Raspberry",
@@ -75,9 +80,10 @@
         ],
         "price": "360",
         "weight": "250g",
-        "category": "fruity"
+        "category": "fruity",
+        "stocks": 0
     },
-    "mint": {
+    "7": {
         "image": "/mint.png",
         "bgcolor": "#375b4b",
         "name": "Cocoa Mint",
@@ -88,9 +94,10 @@
         ],
         "price": "360",
         "weight": "250g",
-        "category": "chocolate"
+        "category": "chocolate",
+        "stocks": 0
     },
-    "hazlenut": {
+    "8": {
         "image": "/hazlenut.png",
         "bgcolor": "#a2370e",
         "name": "Nutty Hazlenut",
@@ -101,9 +108,10 @@
         ],
         "price": "360",
         "weight": "250g",
-        "category": "special"
+        "category": "special",
+        "stocks": 0
     },
-    "vanilla": {
+    "9": {
         "image": "/vanilla.png",
         "bgcolor": "#d4cbb5",
         "name": "French Vanilla",
@@ -114,9 +122,10 @@
         ],
         "price": "360",
         "weight": "250g",
-        "category": "special"
+        "category": "special",
+        "stocks": 0
     },
-    "caramel": {
+    "10": {
         "image": "/caramel.png",
         "bgcolor": "#9f6434",
         "name": "French Caramel",
@@ -127,9 +136,10 @@
         ],
         "price": "360",
         "weight": "250g",
-        "category": "special"
+        "category": "special",
+        "stocks": 0
     },
-    "gold": {
+    "11": {
         "image": "/gold.png",
         "bgcolor": "#7a2445",
         "name": "Gold",
@@ -140,9 +150,10 @@
         ],
         "price": "595",
         "weight": "100g",
-        "category": "originals"
+        "category": "originals",
+        "stocks": 0
     },
-    "ogfilter": {
+    "12": {
         "image": "/filter.png",
         "bgcolor": "#141414",
         "name": "Original Filter Coffee",
@@ -153,9 +164,10 @@
         ],
         "price": "350",
         "weight": "250g",
-        "category": "originals"
+        "category": "originals",
+        "stocks": 0
     },
-    "ognormal": {
+    "13": {
         "image": "/normal.png",
         "bgcolor": "#f1dbb6",
         "name": "Original Coffee",
@@ -166,6 +178,7 @@
         ],
         "price": "350",
         "weight": "250g",
-        "category": "originals"
+        "category": "originals",
+        "stocks": 0
     }
 }

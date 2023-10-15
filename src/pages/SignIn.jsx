@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser, setToken } from "../authStateSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 const SignIn = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.authState.user);
@@ -14,8 +14,9 @@ const SignIn = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [name, setName] = useState("");
+  const { next } = useParams();
 
-  const [currentTab, setCurrentTab] = useState("signin");
+  const [currentTab, setCurrentTab] = useState("register");
 
   const registerUser = async (e) => {
     e.preventDefault();
@@ -57,7 +58,11 @@ const SignIn = () => {
     dispatch(setToken(res.data.token));
     setAuthToken(res.data.token);
 
-    navigate("/shop");
+    if (next) {
+      navigate("/" + next);
+    } else {
+      navigate("/shop");
+    }
   };
 
   return (

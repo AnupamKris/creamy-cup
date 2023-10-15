@@ -1,10 +1,26 @@
-import { useState } from "react";
-import ProductCard from "../components/ProductCard";
-import products from "../products.json";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ProductCard from "../components/ProductCard";
+import axios from "axios";
 
 const shop = () => {
   const [category, setCategory] = useState([]);
+  const [products, setProducts] = useState({});
+
+  const getProducts = async () => {
+    let res = await axios.get("http://localhost:5000/products");
+    console.log(res);
+    setProducts(res.data);
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  useEffect(() => {
+    setFiltered(products);
+  }, [products]);
+
   const updateCat = (cat) => {
     let tempCat = [...category];
     if (tempCat.includes(cat)) {
@@ -73,16 +89,17 @@ const shop = () => {
       </div>
       <div className="container">
         <div className="cards">
-          {Object.entries(filtered).map((product) => {
-            return (
-              <ProductCard
-                product={product[1]}
-                key={product[0]}
-                openProduct={openProduct}
-                prodid={product[0]}
-              />
-            );
-          })}
+          {Object.keys(products).length !== 0 &&
+            Object.entries(filtered).map((product) => {
+              return (
+                <ProductCard
+                  product={product[1]}
+                  key={product[0]}
+                  openProduct={openProduct}
+                  prodid={parseInt(product[0]) + 1}
+                />
+              );
+            })}
         </div>
       </div>
     </div>

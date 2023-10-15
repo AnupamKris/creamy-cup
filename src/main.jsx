@@ -11,6 +11,9 @@ import Profile from "./pages/Profile.jsx";
 import CheckOut from "./pages/CheckOut.jsx";
 import Cart from "./pages/Cart.jsx";
 
+import AdminLogin from "./pages/AdminLogin.jsx";
+import AdminDashboard from "./pages/AdminDashboard.jsx";
+import Admin from "./pages/Admin.jsx";
 import store from "./store";
 import { Provider } from "react-redux";
 
@@ -35,19 +38,23 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: "/shop",
+        path: "shop",
         element: <Shop />,
       },
       {
-        path: "/contact",
+        path: "contact",
         element: <h1>Contact</h1>,
       },
       {
-        path: "/product/:product",
+        path: "product/:product",
         element: <Product />,
       },
       {
-        path: "/signin",
+        path: "signin/",
+        element: <SignIn />,
+      },
+      {
+        path: "signin/:next",
         element: <SignIn />,
       },
       {
@@ -61,6 +68,20 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+    ],
+  },
+  {
+    path: "/admin",
+    element: <Admin />,
+    children: [
+      {
+        path: "",
+        element: <AdminLogin />,
+      },
+      {
+        path: "dashboard",
+        element: <AdminDashboard />,
       },
     ],
   },
