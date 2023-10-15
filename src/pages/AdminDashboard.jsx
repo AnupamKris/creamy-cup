@@ -12,7 +12,7 @@ const AdminDashboard = () => {
   const [showAdd, setShowAdd] = useState(false);
   const [products, setProducts] = useState({});
   const getOrders = async () => {
-    let res = await axios.get("http://localhost:5000/orders");
+    let res = await axios.get("http://dremerz-erp.com/creamycup/orders");
   };
 
   const deleteProduct = async (productid) => {
@@ -20,9 +20,12 @@ const AdminDashboard = () => {
     if (!cnf) {
       return;
     }
-    let res = await axios.post("http://localhost:5000/deleteProduct", {
-      product_id: productid,
-    });
+    let res = await axios.post(
+      "http://dremerz-erp.com/creamycup/deleteProduct",
+      {
+        product_id: productid,
+      }
+    );
     console.log(res.status);
     if (res.status == 201) {
       alert("Product deleted");
@@ -31,7 +34,7 @@ const AdminDashboard = () => {
   };
 
   const getProducts = async () => {
-    let res = await axios.get("http://localhost:5000/products");
+    let res = await axios.get("http://dremerz-erp.com/creamycup/products");
     console.log(res);
     setProducts(res.data);
   };

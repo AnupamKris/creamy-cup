@@ -33,7 +33,10 @@ const SignIn = () => {
       name,
     };
 
-    let res = await axios.post("http://localhost:5000/register", data);
+    let res = await axios.post(
+      "http://dremerz-erp.com/creamycup/register",
+      data
+    );
     console.log(res);
     if (res.status == 201) {
       toggleTab();
@@ -53,7 +56,7 @@ const SignIn = () => {
       email,
       password,
     };
-    let res = await axios.post("http://localhost:5000/login", data);
+    let res = await axios.post("http://dremerz-erp.com/creamycup/login", data);
     dispatch(setUser(res.data.user));
     dispatch(setToken(res.data.token));
     setAuthToken(res.data.token);

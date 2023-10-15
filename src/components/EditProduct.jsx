@@ -21,9 +21,12 @@ const EditProduct = ({ product, setShowEdit, productid }) => {
     };
 
     data.stock = parseInt(data.stock);
-    let res = await axios.post("http://localhost:5000/updateProduct", {
-      data,
-    });
+    let res = await axios.post(
+      "http://dremerz-erp.com/creamycup/updateProduct",
+      {
+        data,
+      }
+    );
     console.log(res.status);
     if (res.status == 201) {
       alert("Product updated");
