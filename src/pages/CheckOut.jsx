@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import AdminDashboard from "./AdminDashboard";
 
 const CheckOut = () => {
   const user = useSelector((state) => state.authState.user);
@@ -63,6 +64,7 @@ const CheckOut = () => {
     );
 
     console.log(await data);
+    navigate("/profile");
   };
 
   const checkOutOrder = async () => {
@@ -106,6 +108,7 @@ const CheckOut = () => {
       },
       handler: generateReceipt,
     };
+    AdminDashboard;
     console.log(user.name, user.email, user.phone);
     let razorpay = new window.Razorpay(options);
     razorpay.open();

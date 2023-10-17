@@ -6,11 +6,26 @@ import AddProduct from "../components/AddProduct";
 
 const AdminDashboard = () => {
   const [currentTab, setCurrentTab] = useState("orders");
+  const [currentOrderStatusTab, setCurrentOrderStatusTab] = useState("all");
   const [orders, setOrders] = useState([]);
+
   const [showEdit, setShowEdit] = useState(false);
   const [editProduct, setEditProduct] = useState({});
   const [showAdd, setShowAdd] = useState(false);
   const [products, setProducts] = useState({});
+
+  const [filteredOrders, setFilteredOrders] = useState([orders]);
+
+  useEffect(() => {
+    if (currentOrderStatusTab == "all") {
+      setFilteredOrders(orders);
+    } else {
+      let filter = orders.filter(
+        (order) => order.order_status == currentOrderStatusTab
+      );
+      setFilteredOrders(filter);
+    }
+  }, [currentOrderStatusTab, orders]);
 
   useEffect(() => {
     getProducts();
@@ -65,6 +80,7 @@ const AdminDashboard = () => {
     // getOrders();
     getProducts();
     getOrders();
+    setFilteredOrders(orders);
   }, []);
 
   return (
@@ -79,20 +95,56 @@ const AdminDashboard = () => {
         {currentTab == "orders" && (
           <div className="orders">
             <div className="tabs">
-              <p>All</p>
-              <p>Pending</p>
-              <p>Delivered</p>
+              <p
+                className={currentOrderStatusTab == "all" ? "cur-tab" : ""}
+                onClick={() => setCurrentOrderStatusTab("all")}
+              >
+                All
+              </p>
+              <p
+                className={currentOrderStatusTab == "packing" ? "cur-tab" : ""}
+                onClick={() => setCurrentOrderStatusTab("packing")}
+              >
+                Packing
+              </p>
+              <p
+                className={currentOrderStatusTab == "shipped" ? "cur-tab" : ""}
+                onClick={() => setCurrentOrderStatusTab("shipped")}
+              >
+                Shipped
+              </p>
+              <p
+                className={currentOrderStatusTab == "out" ? "cur-tab" : ""}
+                onClick={() => setCurrentOrderStatusTab("out")}
+              >
+                Out For Delivery
+              </p>
+              <p
+                className={
+                  currentOrderStatusTab == "delivered" ? "cur-tab" : ""
+                }
+                onClick={() => setCurrentOrderStatusTab("delivered")}
+              >
+                Delivered
+              </p>
             </div>
             {orders.length && (
               <div className="items">
-                {orders.map((order) => {
+                <div className="headings">
+                  <p>Time</p>
+                  <p>Email</p>
+                  <p>Payment Status</p>
+                  <p>Amount</p>
+                  <p>Order Status</p>
+                </div>
+                {filteredOrders.map((order) => {
                   return (
                     <div className="order" key={order.id}>
                       <p>{order.time}</p>
                       <p>{order.email}</p>
 
                       <p>{order.payment_status}</p>
-                      <p>{order.amount}</p>
+                      <p>{order.amount / 100}</p>
                       <p>
                         <select
                           name="orderstatus"

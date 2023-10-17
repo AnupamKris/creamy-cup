@@ -700,8 +700,10 @@ nav {
         display: flex;
         justify-content: center;
         align-items: center;
+        width: 80%;
         h1 {
           padding: 0 20px;
+          width: calc(100% - 100px);
         }
         .circle {
           background: #b3b3b3;
@@ -732,21 +734,13 @@ nav {
         justify-content: center;
         align-items: center;
 
-        .img {
-          height: 80px;
-          width: 80px;
-          img {
-            height: 100%;
-            width: 100%;
-          }
-        }
-
         .product-info {
           display: flex;
           justify-content: center;
+          align-items: center;
           flex-direction: column;
           padding: 0 20px;
-          width: calc(100% - 100px);
+          width: calc(100%);
 
           .titular {
             width: 90%;
@@ -1651,6 +1645,51 @@ nav {
       }
       button {
         width: 80%;
+      }
+    }
+  }
+
+  .profile {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .container {
+      width: calc(100% - 20px);
+      flex-direction: column;
+      height: auto;
+      padding: 20px 0;
+
+      .profile-info {
+        width: 100%;
+        .name {
+          width: 100%;
+          h1 {
+            width: 100%;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .circle {
+            display: none;
+          }
+        }
+        button {
+          width: 80%;
+        }
+      }
+
+      .orders {
+        width: 80%;
+        h3 {
+          width: 100%;
+
+          margin-bottom: 15px;
+        }
+        .order {
+          width: 100%;
+        }
       }
     }
   }
