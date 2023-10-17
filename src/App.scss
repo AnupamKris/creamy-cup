@@ -1814,12 +1814,23 @@ nav {
         .field {
           width: 100%;
         }
+
+        .buttons {
+          width: 100%;
+          margin: 10px 0;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          button {
+            margin: 10px 0;
+            padding: 0 5px;
+            border-radius: 5px;
+            width: 48%;
+          }
+        }
       }
       .bill {
         width: 100%;
-      }
-      button {
-        width: 80%;
       }
     }
   }
@@ -1834,10 +1845,11 @@ nav {
       height: auto;
       padding: 20px 0;
 
-      padding-top: 90px;
+      padding-top: 40px;
 
       .profile-info {
         width: 100%;
+        padding-top: 70px;
         .name {
           width: 100%;
           h1 {
@@ -1858,15 +1870,18 @@ nav {
       }
 
       .orders {
-        width: 80%;
+        width: 95%;
+        margin-top: 0px;
         h3 {
           width: 100%;
 
           margin-bottom: 15px;
         }
+
         .order {
           width: 100%;
           .product-info {
+            width: 100%;
             .items {
               .item {
                 .details {
