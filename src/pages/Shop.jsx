@@ -47,46 +47,6 @@ const shop = () => {
 
   return (
     <div className="shop">
-      {/* <div className="sidebar">
-        <div className="filters">
-          <p>Filters</p>
-          <span>Categories</span>
-          <div className="category">
-            <div className="field">
-              <label htmlFor="originals">Originals</label>
-              <input
-                id="originals"
-                type="checkbox"
-                onChange={() => updateCat("originals")}
-              />
-            </div>
-            <div className="field">
-              <label htmlFor="fruity">Fruity</label>
-              <input
-                id="fruity"
-                type="checkbox"
-                onChange={() => updateCat("fruity")}
-              />
-            </div>
-            <div className="field">
-              <label htmlFor="special">Special</label>
-              <input
-                id="special"
-                type="checkbox"
-                onChange={() => updateCat("special")}
-              />
-            </div>
-            <div className="field">
-              <label htmlFor="chocolate">Chocolate</label>
-              <input
-                id="chocolate"
-                type="checkbox"
-                onChange={() => updateCat("chocolate")}
-              />
-            </div>
-          </div>
-        </div>
-      </div> */}
       <div className="container">
         <div className="cards">
           {Object.keys(products).length !== 0 &&

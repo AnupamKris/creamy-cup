@@ -380,12 +380,13 @@ nav {
 .shop {
   padding: 20px 0;
   padding-top: 70px;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
+  padding-bottom: 0;
 
   .input {
     width: 100%;
@@ -401,54 +402,19 @@ nav {
     }
   }
 
-  .sidebar {
-    height: 100vh;
-    width: 250px;
-    background: #e9e9e9;
-    padding: 0 20px;
-    padding-top: 70px;
-    .filters {
-      span {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 16px;
-        font-weight: 600;
-        color: #575757;
-        margin: 10px 0;
-      }
-      .category {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        .field {
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin: 5px 0;
-          input {
-            width: 15px;
-            height: 15px;
-          }
-          label {
-            font-size: 14px;
-            color: #575757;
-          }
-        }
-      }
-    }
-  }
   .container {
     width: calc(100%);
-    height: 100vh;
+    // height: 100vh;
+    height: auto;
     overflow-y: scroll;
-    padding-top: 70px;
+    padding-top: 10px;
     background: #e9e9e9;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    padding-bottom: 30px;
   }
   .cards {
     display: grid;
@@ -456,6 +422,11 @@ nav {
     width: 90%;
     min-height: 100vh;
     height: auto;
+  }
+
+  .some {
+    height: 300px;
+    width: 100%;
   }
 }
 
