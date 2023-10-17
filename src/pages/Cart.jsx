@@ -98,17 +98,9 @@ const Cart = () => {
                 }, 0)}
               </p>
             </div>
+
             <div className="itemscount">
-              <p>PLATFORM FEE</p>
-              <p>
-                &#8377;
-                {cart.reduce((acc, item) => {
-                  return acc + item.quantity * getProductFromId(item.id).price;
-                }, 0) * 0.02}
-              </p>
-            </div>
-            <div className="itemscount">
-              <p>SHIPPING</p>
+              <p>PAYMENT</p>
             </div>
             <div className="delivery">
               <span
@@ -116,17 +108,17 @@ const Cart = () => {
                 className={deliveryType == "standard" ? "selected" : ""}
               >
                 <div className="between">
-                  <p>Standard Delivery</p> <p>FREE</p>
+                  <p>Cash On Delivery</p> <p>FREE</p>
                 </div>
-                <p>5-7 working days</p>
+                <p>3-5 working days</p>
               </span>
               <span
                 onClick={() => setDeliveryTypee("express")}
                 className={deliveryType == "express" ? "selected" : ""}
               >
                 <div className="between">
-                  <p>Express Delivery</p>
-                  <p>&#8377;40</p>
+                  <p>Online Payment</p>
+                  <p>&#8377;2%</p>
                 </div>
                 <p>3-5 working days</p>
               </span>
@@ -141,14 +133,14 @@ const Cart = () => {
                       acc + item.quantity * getProductFromId(item.id).price
                     );
                   },
-                  deliveryType == "express" ? 40 : 0
-                ) +
-                  cart.reduce((acc, item) => {
-                    return (
-                      acc + item.quantity * getProductFromId(item.id).price
-                    );
-                  }, 0) *
-                    0.02}
+                  deliveryType == "express"
+                    ? cart.reduce((acc, item) => {
+                        return (
+                          acc + item.quantity * getProductFromId(item.id).price
+                        );
+                      }, 0) * 0.02
+                    : 0
+                )}
               </p>
             </div>
             <button className="checkoutButton" onClick={checkOut}>

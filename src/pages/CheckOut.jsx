@@ -77,6 +77,11 @@ const CheckOut = () => {
   };
 
   const checkOutOrder = async () => {
+    if (deliveryType == "standard") {
+      checkOutOrderCOD();
+      return;
+    }
+
     if (Object.keys(user).length == 0) {
       navigate("/signin/checkout");
     }
@@ -230,25 +235,18 @@ const CheckOut = () => {
                 </span>
               </div>
               <div className="item">
-                <span>Delivery Charge :</span>
-                <span>{deliveryType == "standard" ? 0 : 40}</span>
+                <span>Platform Fee :</span>
+                <span>
+                  {deliveryType == "standard"
+                    ? 0
+                    : cart.reduce((acc, item) => {
+                        return (
+                          acc + item.quantity * getProductFromId(item.id).price
+                        );
+                      }, 0) * 0.02}
+                </span>
               </div>
 
-              <div className="item">
-                <span>
-                  <b>Total (COD) :</b>
-                </span>
-                <span>
-                  {cart.reduce(
-                    (acc, item) => {
-                      return (
-                        acc + item.quantity * getProductFromId(item.id).price
-                      );
-                    },
-                    deliveryType == "standard" ? 0 : 40
-                  )}
-                </span>
-              </div>
               <div className="item">
                 <span>
                   <b>Total :</b>
@@ -260,21 +258,23 @@ const CheckOut = () => {
                         acc + item.quantity * getProductFromId(item.id).price
                       );
                     },
-                    deliveryType == "standard" ? 0 : 40
-                  ) +
-                    cart.reduce((acc, item) => {
-                      return (
-                        acc + item.quantity * getProductFromId(item.id).price
-                      );
-                    }, 0) *
-                      0.02}
+                    deliveryType == "standard"
+                      ? 0
+                      : cart.reduce((acc, item) => {
+                          return (
+                            acc +
+                            item.quantity * getProductFromId(item.id).price
+                          );
+                        }, 0) * 0.02
+                  )}
                 </span>
               </div>
             </div>
           )}
           <div className="buttons">
-            <button onClick={checkOutOrderCOD}>Place Order and COD</button>
-            <button onClick={checkOutOrder}>Place Order and Pay</button>
+            <button onClick={checkOutOrder}>
+              Place Order {deliveryType == "express" ? "and Pay" : ""}
+            </button>
           </div>
         </div>
       </div>
