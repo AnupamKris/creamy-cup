@@ -444,6 +444,7 @@ nav {
   .container {
     height: 90%;
     width: 90%;
+    max-width: 1000px;
 
     position: relative;
     display: flex;
@@ -456,7 +457,7 @@ nav {
     .close {
       position: absolute;
       right: 0px;
-      top: 90px;
+      top: 95px;
       color: white;
       height: 40px;
       width: 40px;
