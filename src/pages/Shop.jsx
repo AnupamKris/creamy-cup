@@ -49,7 +49,7 @@ const shop = () => {
     <div className="shop">
       <div className="container">
         <div className="cards">
-          {Object.keys(products).length !== 0 &&
+          {Object.keys(products).length !== 0 ? (
             Object.entries(filtered).map((product) => {
               return (
                 <ProductCard
@@ -59,7 +59,10 @@ const shop = () => {
                   prodid={product[1].id}
                 />
               );
-            })}
+            })
+          ) : (
+            <div className="loader"> </div>
+          )}
         </div>
       </div>
     </div>

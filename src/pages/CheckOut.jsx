@@ -76,7 +76,35 @@ const CheckOut = () => {
     navigate("/profile");
   };
 
+  const validateFields = () => {
+    if (shippingName == "") {
+      alert("Please enter name");
+      return false;
+    }
+    if (shippingPhone == "") {
+      alert("Please enter phone");
+      return false;
+    }
+    if (shippingEmail == "") {
+      alert("Please enter email");
+      return false;
+    }
+    if (shippingAddress == "") {
+      alert("Please enter address");
+      return false;
+    }
+    if (shippingPincode == "") {
+      alert("Please enter pincode");
+      return false;
+    }
+    return true;
+  };
+
   const checkOutOrder = async () => {
+    if (!validateFields()) {
+      return;
+    }
+
     if (deliveryType == "standard") {
       checkOutOrderCOD();
       return;
