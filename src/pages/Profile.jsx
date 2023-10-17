@@ -181,7 +181,7 @@ const profile = () => {
 
                     <div className="titular">
                       <p>{order.products.length} Items</p>
-                      <p>{order.amount / 100}</p>
+                      <p>&#8377;{order.amount / 100}</p>
                     </div>
                     <div className="order-status">
                       <p>Ordered: {order.time}</p>

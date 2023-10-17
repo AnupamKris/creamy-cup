@@ -99,6 +99,15 @@ const Cart = () => {
               </p>
             </div>
             <div className="itemscount">
+              <p>PLATFORM FEE</p>
+              <p>
+                &#8377;
+                {cart.reduce((acc, item) => {
+                  return acc + item.quantity * getProductFromId(item.id).price;
+                }, 0) * 0.02}
+              </p>
+            </div>
+            <div className="itemscount">
               <p>SHIPPING</p>
             </div>
             <div className="delivery">
@@ -133,7 +142,13 @@ const Cart = () => {
                     );
                   },
                   deliveryType == "express" ? 40 : 0
-                )}
+                ) +
+                  cart.reduce((acc, item) => {
+                    return (
+                      acc + item.quantity * getProductFromId(item.id).price
+                    );
+                  }, 0) *
+                    0.02}
               </p>
             </div>
             <button className="checkoutButton" onClick={checkOut}>

@@ -227,12 +227,27 @@ const CheckOut = () => {
                       acc + item.quantity * getProductFromId(item.id).price
                     );
                   }, 0)}
-                  .00
                 </span>
               </div>
               <div className="item">
                 <span>Delivery Charge :</span>
-                <span>{deliveryType == "standard" ? 0 : 40}.00</span>
+                <span>{deliveryType == "standard" ? 0 : 40}</span>
+              </div>
+
+              <div className="item">
+                <span>
+                  <b>Total (COD) :</b>
+                </span>
+                <span>
+                  {cart.reduce(
+                    (acc, item) => {
+                      return (
+                        acc + item.quantity * getProductFromId(item.id).price
+                      );
+                    },
+                    deliveryType == "standard" ? 0 : 40
+                  )}
+                </span>
               </div>
               <div className="item">
                 <span>
@@ -246,8 +261,13 @@ const CheckOut = () => {
                       );
                     },
                     deliveryType == "standard" ? 0 : 40
-                  )}
-                  .00
+                  ) +
+                    cart.reduce((acc, item) => {
+                      return (
+                        acc + item.quantity * getProductFromId(item.id).price
+                      );
+                    }, 0) *
+                      0.02}
                 </span>
               </div>
             </div>

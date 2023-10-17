@@ -1804,11 +1804,21 @@ nav {
   }
 
   .checkout {
+    overflow-y: scroll;
+    display: flex;
+    padding: 20px 0;
+    height: 100vh;
+    padding-top: 70px;
+    flex-direction: column;
+    justify-content: flex-start;
     .container {
       flex-direction: column;
+
       display: flex;
-      justify-content: flex-start;
+      // justify-content: flex-start;
       align-items: center;
+      height: auto;
+
       .col {
         width: 90%;
         .field {
