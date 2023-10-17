@@ -5,15 +5,15 @@ import { useNavigate } from "react-router-dom";
 
 const profile = () => {
   const [orders, setOrders] = useState([]);
-  // const user = useSelector((state) => state.authState.user);
-  // const token = useSelector((state) => state.authState.token);
-  const user = {
-    email: "anupamkris13262@gmail.com",
-    name: "K S Anupam Krishna",
-    phone: "6369900860",
-  };
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImV4cCI6MTY5NzU2MzczMn0.Qix0j1PX2XcW1Jl5WOCO9_kUUhkQziz3WvbdR5pr3AA";
+  const user = useSelector((state) => state.authState.user);
+  const token = useSelector((state) => state.authState.token);
+  // const user = {
+  //   email: "anupamkris13262@gmail.com",
+  //   name: "K S Anupam Krishna",
+  //   phone: "6369900860",
+  // };
+  // const token =
+  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImV4cCI6MTY5NzU2MzczMn0.Qix0j1PX2XcW1Jl5WOCO9_kUUhkQziz3WvbdR5pr3AA";
   const navigate = useNavigate();
   const [currentTab, setCurrentTab] = useState("orders");
   const [expand, setExpand] = useState(0);
