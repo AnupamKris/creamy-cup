@@ -153,7 +153,7 @@ const profile = () => {
         {currentTab == "orders" && (
           <div className="orders">
             <h3>My Orders</h3>
-            {orders &&
+            {orders ? (
               orders.map((order, index) => (
                 <div
                   key={index}
@@ -242,7 +242,10 @@ const profile = () => {
                     </div>
                   </div>
                 </div>
-              ))}
+              ))
+            ) : (
+              <div className="loader"></div>
+            )}
           </div>
         )}
       </div>
