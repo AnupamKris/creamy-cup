@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { emptyCart } from "../cartSlice";
 import axios from "axios";
 import AdminDashboard from "./AdminDashboard";
 
@@ -11,12 +12,12 @@ const CheckOut = () => {
   const deliveryType = useSelector((state) => state.cart.deliveryType);
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
-
   const [shippingName, setShippingName] = useState("");
   const [shippingPhone, setShippingPhone] = useState("");
   const [shippingEmail, setShippingEmail] = useState("");
   const [shippingAddress, setShippingAddress] = useState("");
   const [shippingPincode, setShippingPincode] = useState("");
+  const dispatch = useDispatch();
 
   const loadScript = (src) => {
     return new Promise((resolve) => {
@@ -34,10 +35,14 @@ const CheckOut = () => {
 
   useEffect(() => {
     loadScript("https://checkout.razorpay.com/v1/checkout.js");
-  }, []);
-
-  useEffect(() => {
     getProducts();
+    if (user.shippingData != undefined) {
+      setShippingName(user.shippingData.name);
+      setShippingPhone(user.shippingData.phone);
+      setShippingEmail(user.shippingData.email);
+      setShippingAddress(user.shippingData.address);
+      setShippingPincode(user.shippingData.pincode);
+    }
   }, []);
 
   const getProducts = async () => {
@@ -63,7 +68,11 @@ const CheckOut = () => {
       }
     );
 
+    // emptycarrt
+    dispatch(emptyCart());
+
     console.log(await data);
+    alert("Order Placed");
     navigate("/profile");
   };
 
@@ -112,6 +121,43 @@ const CheckOut = () => {
     console.log(user.name, user.email, user.phone);
     let razorpay = new window.Razorpay(options);
     razorpay.open();
+  };
+
+  const checkOutOrderCOD = async () => {
+    if (Object.keys(user).length == 0) {
+      navigate("/signin/checkout");
+    }
+
+    const order = await axios.post(
+      "https://dremerz-erp.com/creamycup/createOrder",
+      {
+        user: user,
+        cartData: cart,
+        deliveryType: deliveryType,
+        shippingData: {
+          name: shippingName,
+          phone: shippingPhone,
+          email: shippingEmail,
+          address: shippingAddress,
+          pincode: shippingPincode,
+        },
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+      }
+    );
+
+    // emptycarrt
+    dispatch(emptyCart());
+    let recieptData = {
+      razorpay_order_id: order.data.id,
+      razorpay_payment_id: "COD",
+      razorpay_signature: "COD",
+    };
+    generateReceipt(recieptData);
   };
 
   // const getProductFromId = (iid) => {
@@ -206,7 +252,10 @@ const CheckOut = () => {
               </div>
             </div>
           )}
-          <button onClick={checkOutOrder}>Place Order and Pay</button>
+          <div className="buttons">
+            <button onClick={checkOutOrderCOD}>Place Order and COD</button>
+            <button onClick={checkOutOrder}>Place Order and Pay</button>
+          </div>
         </div>
       </div>
     </div>

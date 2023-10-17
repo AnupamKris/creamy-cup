@@ -8,6 +8,45 @@ const profile = () => {
   const user = useSelector((state) => state.authState.user);
   const token = useSelector((state) => state.authState.token);
   const navigate = useNavigate();
+  const [currentTab, setCurrentTab] = useState("profile");
+  const [expand, setExpand] = useState(0);
+  const [products, setProducts] = useState([]);
+
+  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [repeatNewPassword, setRepeatNewPassword] = useState("");
+
+  const changePassword = async () => {
+    if (newPassword !== repeatNewPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    try {
+      let res = await axios.post(
+        "https://dremerz-erp.com/creamycup/changePassword",
+        {
+          password,
+          newPassword,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      if (res.status == 201) {
+        alert("Password changed successfully");
+        setPassword("");
+        setNewPassword("");
+        setRepeatNewPassword("");
+      }
+    } catch (error) {
+      alert("Check your current password or try again later");
+    }
+  };
+
   const getOrders = async () => {
     let res = await axios.post(
       "https://dremerz-erp.com/creamycup/getUserOrders",
@@ -23,60 +62,129 @@ const profile = () => {
     setOrders(res.data);
   };
 
+  const getProducts = async () => {
+    // let res = await axios.get("https://dremerz-erp.com/creamycup/products");
+    let res = await axios.get("https://dremerz-erp.com/creamycup/products");
+    console.log(res);
+    setProducts(res.data);
+  };
+
+  const getProductFromId = (id) => {
+    return products.filter((product) => product.id == id)[0];
+  };
+
   useEffect(() => {
     if (user.name == undefined) {
       navigate("/signin");
       return;
     }
     getOrders();
+    getProducts();
   }, []);
   return (
     <div className="profile">
       <div className="container">
-        <div className="profile-info">
-          <div className="name">
-            <div className="circle"></div>
-            <h1>{user.name}</h1>
+        <div className="tabs">
+          <div
+            onClick={() => setCurrentTab("profile")}
+            className={currentTab == "profile" ? "selected" : ""}
+          >
+            Profile
           </div>
-
-          <div className="field margin">
-            <label htmlFor="">Phone</label>
-            <input type="text" value={user.phone} readOnly />
+          <div
+            onClick={() => setCurrentTab("orders")}
+            className={currentTab == "orders" ? "selected" : ""}
+          >
+            Orders
           </div>
-          <h3 className="margin">Change Password</h3>
-          <div className="field">
-            <label htmlFor="">Current Password</label>
-            <input type="text" />
-          </div>
-          <div className="field">
-            <label htmlFor="">New Password</label>
-            <input type="text" />
-          </div>
-          <div className="field">
-            <label htmlFor="">Repeat Password</label>
-            <input type="text" />
-          </div>
-
-          <button>Update Password</button>
         </div>
-        <div className="orders">
-          <h3>My Orders</h3>
-          {orders &&
-            orders.map((order) => (
-              <div className="order">
-                <div className="product-info">
-                  <div className="titular">
-                    <p>{order.products.length} Items</p>
-                    <p>{order.amount / 100}</p>
-                  </div>
-                  <div className="order-status">
-                    <p>Ordered: {order.time}</p>
-                    <p>Status: {order.order_status}</p>
+        {currentTab == "profile" && (
+          <div className="profile-info">
+            <div className="name">
+              <div className="circle">
+                {user.name && user.name[0].toUpperCase()}
+              </div>
+              <h1>{user.name}</h1>
+            </div>
+
+            <div className="field margin">
+              <label htmlFor="">Phone</label>
+              <input type="text" value={user.phone} readOnly />
+            </div>
+            <h3 className="margin">Change Password</h3>
+            <div className="field">
+              <label htmlFor="password">Current Password</label>
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type="text"
+                id="password"
+              />
+            </div>
+            <div className="field">
+              <label htmlFor="newPassword">New Password</label>
+              <input
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                type="text"
+                id="newPassword"
+              />
+            </div>
+            <div className="field">
+              <label htmlFor="repeatNewPassword">Repeat Password</label>
+              <input
+                value={repeatNewPassword}
+                onChange={(e) => setRepeatNewPassword(e.target.value)}
+                type="text"
+                id="repeatNewPassword"
+              />
+            </div>
+
+            <button onClick={changePassword}>Update Password</button>
+          </div>
+        )}
+        {currentTab == "orders" && (
+          <div className="orders">
+            <h3>My Orders</h3>
+            {orders &&
+              orders.map((order, index) => (
+                <div
+                  key={index}
+                  className={"order" + (expand == index ? " expand" : "")}
+                  onClick={() => setExpand(index)}
+                >
+                  <div className="product-info">
+                    <div
+                      className={
+                        "items " + (expand == index ? "expanded-items" : "")
+                      }
+                    >
+                      {order.products.map((item) => (
+                        <div className="item" key={item.id}>
+                          <div className="image">
+                            <img src={getProductFromId(item.id).image} alt="" />
+                          </div>
+                          <div className="details">
+                            <p>{getProductFromId(item.id).name}</p>
+                            <p>Quantity : {item.quantity}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="titular">
+                      <p>{order.products.length} Items</p>
+                      <p>{order.amount / 100}</p>
+                    </div>
+                    <div className="order-status">
+                      <p>Ordered: {order.time}</p>
+                      <p>Status: {order.order_status}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-        </div>
+              ))}
+          </div>
+        )}
       </div>
     </div>
   );

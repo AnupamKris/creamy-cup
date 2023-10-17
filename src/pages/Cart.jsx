@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from "react-redux";
 // import products from "../products";
 import CartItem from "../components/CartItem.jsx";
 import { addToCart, setDeliveryType } from "../cartSlice";
-
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
