@@ -7,8 +7,9 @@ const profile = () => {
   const [orders, setOrders] = useState([]);
   const user = useSelector((state) => state.authState.user);
   const token = useSelector((state) => state.authState.token);
+
   const navigate = useNavigate();
-  const [currentTab, setCurrentTab] = useState("profile");
+  const [currentTab, setCurrentTab] = useState("orders");
   const [expand, setExpand] = useState(0);
   const [products, setProducts] = useState([]);
 
@@ -59,7 +60,7 @@ const profile = () => {
       }
     );
     console.log(res);
-    setOrders(res.data);
+    setOrders(res.data.reverse());
   };
 
   const getProducts = async () => {
@@ -75,7 +76,7 @@ const profile = () => {
 
   useEffect(() => {
     if (user.name == undefined) {
-      navigate("/signin");
+      // navigate("/signin");
       return;
     }
     getOrders();
@@ -166,7 +167,7 @@ const profile = () => {
                           </div>
                           <div className="details">
                             <p>{getProductFromId(item.id).name}</p>
-                            <p>Quantity : {item.quantity}</p>
+                            <p>Qty : {item.quantity}</p>
                           </div>
                         </div>
                       ))}
@@ -178,7 +179,60 @@ const profile = () => {
                     </div>
                     <div className="order-status">
                       <p>Ordered: {order.time}</p>
-                      <p>Status: {order.order_status}</p>
+                    </div>
+                    <div className="status-big">
+                      <div className="line">
+                        <div className={"progress " + order.order_status}></div>
+                      </div>
+                      <div className="dots">
+                        <div
+                          className={
+                            "dot " +
+                            ([
+                              "packing",
+                              "shipped",
+                              "delivered",
+                              "out",
+                            ].includes(order.order_status)
+                              ? "blue"
+                              : "")
+                          }
+                        >
+                          <p>Packing</p>
+                        </div>
+                        <div
+                          className={
+                            "dot " +
+                            (["shipped", "delivered", "out"].includes(
+                              order.order_status
+                            )
+                              ? "blue"
+                              : "")
+                          }
+                        >
+                          <p>Shipped</p>
+                        </div>
+                        <div
+                          className={
+                            "dot " +
+                            (["delivered", "out"].includes(order.order_status)
+                              ? "blue"
+                              : "")
+                          }
+                        >
+                          <p>Out For Delivery</p>
+                        </div>
+                        <div
+                          className={
+                            "dot " +
+                            (["delivered"].includes(order.order_status)
+                              ? "blue"
+                              : "")
+                          }
+                        >
+                          <p>Delivered</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -66,7 +66,7 @@ const SignIn = () => {
     dispatch(setUser(res.data.user));
     dispatch(setToken(res.data.token));
     setAuthToken(res.data.token);
-
+    console.log(res.data.token, res.data.user);
     if (next) {
       navigate("/" + next);
     } else {
