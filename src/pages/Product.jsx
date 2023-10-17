@@ -4,6 +4,7 @@ import Review from "../components/Review";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../cartSlice";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Product = () => {
   const { product } = useParams();
@@ -11,13 +12,17 @@ const Product = () => {
   const cart = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
   const [currentTab, setCurrentTab] = useState("desc");
-
+  const navigate = useNavigate();
   const getProductData = async () => {
     let res = await axios.get("https://dremerz-erp.com/creamycup/productData", {
       params: { product_id: product },
     });
     console.log(res);
     setProductData(res.data);
+  };
+
+  const closeProduct = () => {
+    navigate("/shop");
   };
 
   useEffect(() => {
@@ -47,12 +52,16 @@ const Product = () => {
       })
     );
     alert("Item added to cart");
+    close();
   };
 
   return (
     <div className="product">
       {Object.keys(productData).length !== 0 && (
         <div className="container">
+          <div className="close" onClick={closeProduct}>
+            <ion-icon name="close-outline"></ion-icon>
+          </div>
           <div className="image">
             <img src={productData.image} alt="" />
           </div>
@@ -63,12 +72,6 @@ const Product = () => {
                 onClick={() => setCurrentTab("desc")}
               >
                 Description
-              </p>
-              <p
-                className={currentTab == "rev" ? "selected" : ""}
-                onClick={() => setCurrentTab("rev")}
-              >
-                Reviews
               </p>
             </div>
             {currentTab == "desc" ? (
@@ -85,10 +88,6 @@ const Product = () => {
                   })}
                 </div>
 
-                <div className="ratings">
-                  <p className="star">4.6⭐</p>
-                  <p>125 Ratings & 26 Reviews</p>
-                </div>
                 <p className="sub">Plantation</p>
                 <p>
                   Creamy Cup Coorg Coffee use finest Arabica beans sourced from
@@ -102,30 +101,7 @@ const Product = () => {
                 </div>
               </div>
             ) : (
-              <div className="reviews">
-                <div className="rev">
-                  <Review
-                    username="John Doe"
-                    review="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum."
-                    date="20th June 2023"
-                  />
-                  <Review
-                    username="John Doe"
-                    review="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum."
-                    date="20th June 2023"
-                  />
-                  <Review
-                    username="John Doe"
-                    review="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum."
-                    date="20th June 2023"
-                  />
-                  <Review
-                    username="John Doe"
-                    review="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum."
-                    date="20th June 2023"
-                  />
-                </div>
-              </div>
+              ""
             )}
           </div>
         </div>

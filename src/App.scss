@@ -445,12 +445,26 @@ nav {
     height: 90%;
     width: 90%;
 
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 
     background: #ffffff00;
     // align-items: center;
+
+    .close {
+      position: absolute;
+      right: 0px;
+      top: 90px;
+      color: white;
+      height: 40px;
+      width: 40px;
+      z-index: 10;
+
+      font-size: 24px;
+    }
+
     .image {
       width: auto;
       padding: 0 20px;
@@ -1652,8 +1666,15 @@ nav {
     height: auto;
     .container {
       flex-direction: column;
+      max-width: 500px;
+      .close {
+        color: #000000;
+        right: 10px;
+        top: 15px;
+      }
       .image {
-        width: 100%;
+        max-width: 500px;
+        padding: 20px 0;
         height: 300px;
         img {
           height: 100%;
