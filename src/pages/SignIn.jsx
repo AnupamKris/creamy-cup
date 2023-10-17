@@ -34,7 +34,7 @@ const SignIn = () => {
     };
 
     let res = await axios.post(
-      "http://dremerz-erp.com/creamycup/register",
+      "https://dremerz-erp.com/creamycup/register",
       data
     );
     console.log(res);
@@ -56,7 +56,7 @@ const SignIn = () => {
       email,
       password,
     };
-    let res = await axios.post("http://dremerz-erp.com/creamycup/login", data);
+    let res = await axios.post("https://dremerz-erp.com/creamycup/login", data);
 
     if (res.status !== 200) {
       alert("Invalid Credentials");

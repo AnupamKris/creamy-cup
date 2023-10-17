@@ -13,7 +13,7 @@ const Product = () => {
   const [currentTab, setCurrentTab] = useState("desc");
 
   const getProductData = async () => {
-    let res = await axios.get("http://dremerz-erp.com/creamycup/productData", {
+    let res = await axios.get("https://dremerz-erp.com/creamycup/productData", {
       params: { product_id: product },
     });
     console.log(res);

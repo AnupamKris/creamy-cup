@@ -8,7 +8,7 @@ const shop = () => {
   const [products, setProducts] = useState({});
 
   const getProducts = async () => {
-    let res = await axios.get("http://dremerz-erp.com/creamycup/products");
+    let res = await axios.get("https://dremerz-erp.com/creamycup/products");
     console.log(res);
     setProducts(res.data);
   };

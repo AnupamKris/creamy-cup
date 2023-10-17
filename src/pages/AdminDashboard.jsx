@@ -17,7 +17,7 @@ const AdminDashboard = () => {
   }, [showAdd, showEdit]);
 
   const getOrders = async () => {
-    let res = await axios.get("http://dremerz-erp.com/creamycup/orders");
+    let res = await axios.get("https://dremerz-erp.com/creamycup/orders");
     console.log(res);
     setOrders(res.data);
   };
@@ -25,7 +25,7 @@ const AdminDashboard = () => {
   const changeOrderStatus = async (e, orderid) => {
     console.log("Chaing Statis", orderid);
     let res = await axios.post(
-      "http://dremerz-erp.com/creamycup/changeOrderStatus",
+      "https://dremerz-erp.com/creamycup/changeOrderStatus",
       {
         order_id: orderid,
         order_status: e.target.value,
@@ -43,7 +43,7 @@ const AdminDashboard = () => {
       return;
     }
     let res = await axios.post(
-      "http://dremerz-erp.com/creamycup/deleteProduct",
+      "https://dremerz-erp.com/creamycup/deleteProduct",
       {
         product_id: productid,
       }
@@ -56,7 +56,7 @@ const AdminDashboard = () => {
   };
 
   const getProducts = async () => {
-    let res = await axios.get("http://dremerz-erp.com/creamycup/products");
+    let res = await axios.get("https://dremerz-erp.com/creamycup/products");
     console.log(res);
     setProducts(res.data);
   };
