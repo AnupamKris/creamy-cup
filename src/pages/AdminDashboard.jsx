@@ -11,8 +11,27 @@ const AdminDashboard = () => {
   const [editProduct, setEditProduct] = useState({});
   const [showAdd, setShowAdd] = useState(false);
   const [products, setProducts] = useState({});
+
+  useEffect(() => {
+    getProducts();
+  }, [showAdd, showEdit]);
+
   const getOrders = async () => {
-    let res = await axios.get("https://dremerz-erp.com/creamycup/orders");
+    let res = await axios.get("http://localhost:5000/orders");
+    console.log(res);
+    setOrders(res.data);
+  };
+
+  const changeOrderStatus = async (e, orderid) => {
+    console.log("Chaing Statis", orderid);
+    let res = await axios.post("http://localhost:5000/changeOrderStatus", {
+      order_id: orderid,
+      order_status: e.target.value,
+    });
+    console.log(res.status);
+    if (res.status == 201) {
+      getOrders();
+    }
   };
 
   const deleteProduct = async (productid) => {
@@ -20,12 +39,9 @@ const AdminDashboard = () => {
     if (!cnf) {
       return;
     }
-    let res = await axios.post(
-      "https://dremerz-erp.com/creamycup/deleteProduct",
-      {
-        product_id: productid,
-      }
-    );
+    let res = await axios.post("http://localhost:5000/deleteProduct", {
+      product_id: productid,
+    });
     console.log(res.status);
     if (res.status == 201) {
       alert("Product deleted");
@@ -34,7 +50,7 @@ const AdminDashboard = () => {
   };
 
   const getProducts = async () => {
-    let res = await axios.get("https://dremerz-erp.com/creamycup/products");
+    let res = await axios.get("http://localhost:5000/products");
     console.log(res);
     setProducts(res.data);
   };
@@ -42,6 +58,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     // getOrders();
     getProducts();
+    getOrders();
   }, []);
 
   return (
@@ -60,7 +77,34 @@ const AdminDashboard = () => {
               <p>Pending</p>
               <p>Delivered</p>
             </div>
-            <div className="items"></div>
+            {orders.length && (
+              <div className="items">
+                {orders.map((order) => {
+                  return (
+                    <div className="order" key={order.id}>
+                      <p>{order.time}</p>
+                      <p>{order.email}</p>
+
+                      <p>{order.payment_status}</p>
+                      <p>{order.amount}</p>
+                      <p>
+                        <select
+                          name="orderstatus"
+                          id=""
+                          value={order.order_status}
+                          onChange={(e) => changeOrderStatus(e, order.order_id)}
+                        >
+                          <option value="packing">Packing</option>
+                          <option value="shipped">Shipped</option>
+                          <option value="out">Out For Delivery</option>
+                          <option value="delivered">Delivered</option>
+                        </select>
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         )}
         {currentTab == "products" && (
@@ -81,14 +125,14 @@ const AdminDashboard = () => {
                 Refresh
               </p>
             </div>
-            {Object.keys(products).map((product) => {
+            {products.map((product) => {
               return (
-                <div className="product-admin" key={product}>
-                  <p>{products[product].name}</p>
+                <div className="product-admin" key={product.id}>
+                  <p>{product.name}</p>
                   <p
                     className="edit del"
                     onClick={() => {
-                      deleteProduct(product);
+                      deleteProduct(product.id);
                     }}
                   >
                     Del
@@ -97,7 +141,7 @@ const AdminDashboard = () => {
                     className="edit"
                     onClick={() => {
                       setShowEdit(true);
-                      setEditProduct(product);
+                      setEditProduct(product.id);
                     }}
                   >
                     Edit
@@ -110,7 +154,7 @@ const AdminDashboard = () => {
 
         {showEdit && (
           <EditProduct
-            product={products[editProduct]}
+            product={products.filter((product) => product.id == editProduct)[0]}
             setShowEdit={setShowEdit}
             productid={editProduct}
           />

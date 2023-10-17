@@ -23,7 +23,7 @@ const AddProduct = ({ setShowAdd }) => {
       tags,
     };
 
-    let res = await axios.post("https://dremerz-erp.com/creamycup/addProduct", {
+    let res = await axios.post("http://localhost:5000/addProduct", {
       data,
     });
     console.log(res);

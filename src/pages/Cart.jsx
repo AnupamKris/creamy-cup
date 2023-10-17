@@ -10,23 +10,31 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart.cartItems);
   const user = useSelector((state) => state.authState.user);
   const deliveryType = useSelector((state) => state.cart.deliveryType);
-  const [products, setProducts] = useState({});
+  const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const setDeliveryType = (type) => {
+  const getProductFromId = (id) => {
+    return products.filter((product) => product.id == id)[0];
+  };
+
+
+  useEffect(() => {}, []);
+
+  const setDeliveryTypee = (type) => {
     dispatch(setDeliveryType(type));
   };
 
   const getProducts = async () => {
-    let res = await axios.get("https://dremerz-erp.com/creamycup/products");
+    let res = await axios.get("http://localhost:5000/products");
     console.log(res);
     setProducts(res.data);
+    console.log(res.data.filter((product) => product.id == "asdasd"));
   };
 
   useEffect(() => {
     getProducts();
-    console.log(cart);
+    console.log(cart);  
   }, []);
 
   const checkOut = () => {
@@ -51,7 +59,7 @@ const Cart = () => {
               <span>{cart.length} Items</span>
             </div>
             <div className="titles">
-              <p class="proddet">Product Details</p>
+              <p className="proddet">Product Details</p>
               <p>Quantity</p>
               <p>Price</p>
               <p>Total</p>
@@ -59,9 +67,16 @@ const Cart = () => {
             {cart.map((item) => (
               <CartItem
                 key={item.id}
-                image={products[item.id].image}
-                name={products[item.id].name}
-                description={products[item.id].description}
+                image={
+                  getProductFromId(item.id).image
+                }
+                name={
+                  getProductFromId(item.id).name
+                }
+                description={
+                  getProductFromId(item.id)
+                    .description
+                }
                 quantity={item.quantity}
                 setQuantity={(value) =>
                   dispatch(
@@ -71,7 +86,9 @@ const Cart = () => {
                     })
                   )
                 }
-                price={products[item.id].price}
+                price={
+                  getProductFromId(item.id).price
+                }
               />
             ))}
             <Link className="contn" to="/shop">
@@ -88,7 +105,7 @@ const Cart = () => {
               <p>
                 &#8377;
                 {cart.reduce((acc, item) => {
-                  return acc + item.quantity * products[item.id].price;
+                  return acc + item.quantity * getProductFromId(item.id).price;
                 }, 0)}
               </p>
             </div>
@@ -97,8 +114,8 @@ const Cart = () => {
             </div>
             <div className="delivery">
               <span
-                onClick={() => setDeliveryType("standard")}
-                class={deliveryType == "standard" ? "selected" : ""}
+                onClick={() => setDeliveryTypee("standard")}
+                className={deliveryType == "standard" ? "selected" : ""}
               >
                 <div className="between">
                   <p>Standard Delivery</p> <p>FREE</p>
@@ -106,8 +123,8 @@ const Cart = () => {
                 <p>5-7 working days</p>
               </span>
               <span
-                onClick={() => setDeliveryType("express")}
-                class={deliveryType == "express" ? "selected" : ""}
+                onClick={() => setDeliveryTypee("express")}
+                className={deliveryType == "express" ? "selected" : ""}
               >
                 <div className="between">
                   <p>Express Delivery</p>
@@ -122,7 +139,7 @@ const Cart = () => {
                 &#8377;
                 {cart.reduce(
                   (acc, item) => {
-                    return acc + item.quantity * products[item.id].price;
+                    return acc + item.quantity * getProductFromId(item.id).price;
                   },
                   deliveryType == "express" ? 40 : 0
                 )}

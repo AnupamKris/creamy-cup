@@ -8,7 +8,7 @@ const shop = () => {
   const [products, setProducts] = useState({});
 
   const getProducts = async () => {
-    let res = await axios.get("https://dremerz-erp.com/creamycup/products");
+    let res = await axios.get("http://localhost:5000/products");
     console.log(res);
     setProducts(res.data);
   };
@@ -47,7 +47,7 @@ const shop = () => {
 
   return (
     <div className="shop">
-      <div className="sidebar">
+      {/* <div className="sidebar">
         <div className="filters">
           <p>Filters</p>
           <span>Categories</span>
@@ -86,7 +86,7 @@ const shop = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="container">
         <div className="cards">
           {Object.keys(products).length !== 0 &&
@@ -96,7 +96,7 @@ const shop = () => {
                   product={product[1]}
                   key={product[0]}
                   openProduct={openProduct}
-                  prodid={parseInt(product[0]) + 1}
+                  prodid={product[1].id}
                 />
               );
             })}

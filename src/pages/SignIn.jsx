@@ -33,10 +33,7 @@ const SignIn = () => {
       name,
     };
 
-    let res = await axios.post(
-      "https://dremerz-erp.com/creamycup/register",
-      data
-    );
+    let res = await axios.post("http://localhost:5000/register", data);
     console.log(res);
     if (res.status == 201) {
       toggleTab();
@@ -56,7 +53,13 @@ const SignIn = () => {
       email,
       password,
     };
-    let res = await axios.post("https://dremerz-erp.com/creamycup/login", data);
+    let res = await axios.post("http://localhost:5000/login", data);
+
+    if (res.status !== 200) {
+      alert("Invalid Credentials");
+      return;
+    }
+
     dispatch(setUser(res.data.user));
     dispatch(setToken(res.data.token));
     setAuthToken(res.data.token);

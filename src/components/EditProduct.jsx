@@ -8,6 +8,7 @@ const EditProduct = ({ product, setShowEdit, productid }) => {
   const [tags, setTags] = useState(product.tags);
   const [currentTag, setCurrentTag] = useState("");
   const [stock, setStock] = useState(product.stocks);
+
   const updateProduct = async () => {
     console.log("update", product);
     const data = {
@@ -16,17 +17,14 @@ const EditProduct = ({ product, setShowEdit, productid }) => {
       price,
       image,
       tags,
-      product_id: productid + 1,
-      stock,
+      product_id: productid,
+      stocks: stock,
     };
 
     data.stock = parseInt(data.stock);
-    let res = await axios.post(
-      "https://dremerz-erp.com/creamycup/updateProduct",
-      {
-        data,
-      }
-    );
+    let res = await axios.post("http://localhost:5000/updateProduct", {
+      data,
+    });
     console.log(res.status);
     if (res.status == 201) {
       alert("Product updated");
@@ -93,6 +91,7 @@ const EditProduct = ({ product, setShowEdit, productid }) => {
                   onClick={() =>
                     setTags(tags.filter((curtag) => curtag !== tag))
                   }
+                  key={tag}
                 >
                   {tag}
                 </span>

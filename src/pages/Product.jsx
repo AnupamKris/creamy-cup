@@ -13,7 +13,7 @@ const Product = () => {
   const [currentTab, setCurrentTab] = useState("desc");
 
   const getProductData = async () => {
-    let res = await axios.get("https://dremerz-erp.com/creamycup/productData", {
+    let res = await axios.get("http://localhost:5000/productData", {
       params: { product_id: product },
     });
     console.log(res);
@@ -25,7 +25,11 @@ const Product = () => {
   }, []);
 
   const addItemToCart = () => {
-    const index = cart.findIndex((item) => item.id === product);
+    const index = cart.findIndex((item) => item.id === product.id);
+    if (productData.stocks == 0) {
+      alert("Out of stock");
+      return;
+    }
     if (index !== -1) {
       dispatch(
         addToCart({
@@ -73,7 +77,7 @@ const Product = () => {
                 <p>{productData.description}</p>
                 <div className="tags">
                   {productData.tags.map((tag) => {
-                    return <span className="tag">{tag}</span>;
+                    return <span className="tag" key={tag}>{tag}</span>;
                   })}
                 </div>
 
@@ -90,7 +94,7 @@ const Product = () => {
                 <p>Coffee Beans, Natural Flavours.</p>
 
                 <div className="buttons">
-                  <button>Buy Now</button>
+                  
                   <button onClick={addItemToCart}>Add to Cart</button>
                 </div>
               </div>

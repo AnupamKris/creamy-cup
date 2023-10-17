@@ -54,6 +54,24 @@
           }
         }
       }
+
+      .items {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .order {
+          width: 100%;
+          display: grid;
+          grid-template-columns: 2fr 2fr 2fr 1fr 1fr;
+          font-size: 14px;
+          p {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+      }
     }
 
     .products-admin {

@@ -28,7 +28,7 @@ const App = () => {
         <img src="/coffee.png" alt="" className="left-img" />
         <div className="text">
           <p>Exquisite Journey into Coorg's Arabica Bliss</p>
-          <span>CREAMY CUP</span>
+          <span><img src="/logo.png" alt="" /></span>
           <p>
             Discover the Finest Coffee Beans from the Heart of Kodagu, Crafted
             with Love for Your Perfect Brew

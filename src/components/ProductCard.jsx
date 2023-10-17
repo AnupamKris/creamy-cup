@@ -1,6 +1,11 @@
 const ProductCard = ({ product, openProduct, prodid }) => {
   return (
     <div className="prod-card" onClick={() => openProduct(prodid)}>
+      {product.stocks == 0 && (
+        <div className="outofstock">
+          <span>Out of Stock</span>
+        </div>
+      )}
       <div className="img" style={{ background: product.bgcolor }}>
         <img src={product.image} alt="" />
       </div>
@@ -9,7 +14,7 @@ const ProductCard = ({ product, openProduct, prodid }) => {
         <p>{product.description}</p>
         <div className="tags">
           {product.tags.map((tag) => {
-            return <span className="tag">{tag}</span>;
+            return <span className="tag" key={tag}>{tag}</span>;
           })}
         </div>
         <div className="price">
