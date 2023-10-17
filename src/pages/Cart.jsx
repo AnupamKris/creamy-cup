@@ -18,7 +18,6 @@ const Cart = () => {
     return products.filter((product) => product.id == id)[0];
   };
 
-
   useEffect(() => {}, []);
 
   const setDeliveryTypee = (type) => {
@@ -26,7 +25,7 @@ const Cart = () => {
   };
 
   const getProducts = async () => {
-    let res = await axios.get("http://localhost:5000/products");
+    let res = await axios.get("http://dremerz-erp.com/creamycup/products");
     console.log(res);
     setProducts(res.data);
     console.log(res.data.filter((product) => product.id == "asdasd"));
@@ -34,7 +33,7 @@ const Cart = () => {
 
   useEffect(() => {
     getProducts();
-    console.log(cart);  
+    console.log(cart);
   }, []);
 
   const checkOut = () => {
@@ -67,16 +66,9 @@ const Cart = () => {
             {cart.map((item) => (
               <CartItem
                 key={item.id}
-                image={
-                  getProductFromId(item.id).image
-                }
-                name={
-                  getProductFromId(item.id).name
-                }
-                description={
-                  getProductFromId(item.id)
-                    .description
-                }
+                image={getProductFromId(item.id).image}
+                name={getProductFromId(item.id).name}
+                description={getProductFromId(item.id).description}
                 quantity={item.quantity}
                 setQuantity={(value) =>
                   dispatch(
@@ -86,9 +78,7 @@ const Cart = () => {
                     })
                   )
                 }
-                price={
-                  getProductFromId(item.id).price
-                }
+                price={getProductFromId(item.id).price}
               />
             ))}
             <Link className="contn" to="/shop">
@@ -139,7 +129,9 @@ const Cart = () => {
                 &#8377;
                 {cart.reduce(
                   (acc, item) => {
-                    return acc + item.quantity * getProductFromId(item.id).price;
+                    return (
+                      acc + item.quantity * getProductFromId(item.id).price
+                    );
                   },
                   deliveryType == "express" ? 40 : 0
                 )}

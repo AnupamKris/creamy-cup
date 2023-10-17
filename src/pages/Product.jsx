@@ -13,7 +13,7 @@ const Product = () => {
   const [currentTab, setCurrentTab] = useState("desc");
 
   const getProductData = async () => {
-    let res = await axios.get("http://localhost:5000/productData", {
+    let res = await axios.get("http://dremerz-erp.com/creamycup/productData", {
       params: { product_id: product },
     });
     console.log(res);
@@ -77,7 +77,11 @@ const Product = () => {
                 <p>{productData.description}</p>
                 <div className="tags">
                   {productData.tags.map((tag) => {
-                    return <span className="tag" key={tag}>{tag}</span>;
+                    return (
+                      <span className="tag" key={tag}>
+                        {tag}
+                      </span>
+                    );
                   })}
                 </div>
 
@@ -94,7 +98,6 @@ const Product = () => {
                 <p>Coffee Beans, Natural Flavours.</p>
 
                 <div className="buttons">
-                  
                   <button onClick={addItemToCart}>Add to Cart</button>
                 </div>
               </div>

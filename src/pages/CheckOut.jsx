@@ -40,7 +40,7 @@ const CheckOut = () => {
   }, []);
 
   const getProducts = async () => {
-    let res = await axios.get("http://localhost:5000/products");
+    let res = await axios.get("http://dremerz-erp.com/creamycup/products");
     console.log(res);
     setProducts(res.data);
   };
@@ -51,12 +51,16 @@ const CheckOut = () => {
 
   const generateReceipt = async (res) => {
     console.log("HADNLER RUNNIG", res);
-    let data = axios.post("http://localhost:5000/createReciept", res, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token,
-      },
-    });
+    let data = axios.post(
+      "http://dremerz-erp.com/creamycup/createReciept",
+      res,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+      }
+    );
 
     console.log(await data);
   };
@@ -67,7 +71,7 @@ const CheckOut = () => {
     }
 
     const order = await axios.post(
-      "http://localhost:5000/createOrder",
+      "http://dremerz-erp.com/creamycup/createOrder",
       {
         user: user,
         cartData: cart,

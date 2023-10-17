@@ -17,17 +17,20 @@ const AdminDashboard = () => {
   }, [showAdd, showEdit]);
 
   const getOrders = async () => {
-    let res = await axios.get("http://localhost:5000/orders");
+    let res = await axios.get("http://dremerz-erp.com/creamycup/orders");
     console.log(res);
     setOrders(res.data);
   };
 
   const changeOrderStatus = async (e, orderid) => {
     console.log("Chaing Statis", orderid);
-    let res = await axios.post("http://localhost:5000/changeOrderStatus", {
-      order_id: orderid,
-      order_status: e.target.value,
-    });
+    let res = await axios.post(
+      "http://dremerz-erp.com/creamycup/changeOrderStatus",
+      {
+        order_id: orderid,
+        order_status: e.target.value,
+      }
+    );
     console.log(res.status);
     if (res.status == 201) {
       getOrders();
@@ -39,9 +42,12 @@ const AdminDashboard = () => {
     if (!cnf) {
       return;
     }
-    let res = await axios.post("http://localhost:5000/deleteProduct", {
-      product_id: productid,
-    });
+    let res = await axios.post(
+      "http://dremerz-erp.com/creamycup/deleteProduct",
+      {
+        product_id: productid,
+      }
+    );
     console.log(res.status);
     if (res.status == 201) {
       alert("Product deleted");
@@ -50,7 +56,7 @@ const AdminDashboard = () => {
   };
 
   const getProducts = async () => {
-    let res = await axios.get("http://localhost:5000/products");
+    let res = await axios.get("http://dremerz-erp.com/creamycup/products");
     console.log(res);
     setProducts(res.data);
   };
