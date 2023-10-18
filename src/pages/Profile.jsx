@@ -154,95 +154,103 @@ const profile = () => {
           <div className="orders">
             <h3>My Orders</h3>
             {orders ? (
-              orders.map((order, index) => (
-                <div
-                  key={index}
-                  className={"order" + (expand == index ? " expand" : "")}
-                  onClick={() => setExpand(index)}
-                >
-                  <div className="product-info">
-                    <div
-                      className={
-                        "items " + (expand == index ? "expanded-items" : "")
-                      }
-                    >
-                      {order.products.map((item) => (
-                        <div className="item" key={item.id}>
-                          <div className="image">
-                            <img src={getProductFromId(item.id).image} alt="" />
+              orders
+                .filter((order) => order.order_status != "payment")
+                .map((order, index) => (
+                  <div
+                    key={index}
+                    className={"order" + (expand == index ? " expand" : "")}
+                    onClick={() => setExpand(index)}
+                  >
+                    <div className="product-info">
+                      <div
+                        className={
+                          "items " + (expand == index ? "expanded-items" : "")
+                        }
+                      >
+                        {order.products.map((item) => (
+                          <div className="item" key={item.id}>
+                            <div className="image">
+                              <img
+                                src={getProductFromId(item.id).image}
+                                alt=""
+                              />
+                            </div>
+                            <div className="details">
+                              <p>{getProductFromId(item.id).name}</p>
+                              <p>Qty : {item.quantity}</p>
+                            </div>
                           </div>
-                          <div className="details">
-                            <p>{getProductFromId(item.id).name}</p>
-                            <p>Qty : {item.quantity}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="titular">
-                      <p>{order.products.length} Items</p>
-                      <p>&#8377;{order.amount / 100}</p>
-                    </div>
-                    <div className="order-status">
-                      <p>Ordered: {order.time}</p>
-                    </div>
-                    <div className="status-big">
-                      <div className="line">
-                        <div className={"progress " + order.order_status}></div>
+                        ))}
                       </div>
-                      <div className="dots">
-                        <div
-                          className={
-                            "dot " +
-                            ([
-                              "packing",
-                              "shipped",
-                              "delivered",
-                              "out",
-                            ].includes(order.order_status)
-                              ? "blue"
-                              : "")
-                          }
-                        >
-                          <p>Packing</p>
+
+                      <div className="titular">
+                        <p>{order.products.length} Items</p>
+                        <p>&#8377;{order.amount / 100}</p>
+                      </div>
+                      <div className="order-status">
+                        <p>Ordered: {order.time}</p>
+                      </div>
+                      <div className="status-big">
+                        <div className="line">
+                          <div
+                            className={"progress " + order.order_status}
+                          ></div>
                         </div>
-                        <div
-                          className={
-                            "dot " +
-                            (["shipped", "delivered", "out"].includes(
-                              order.order_status
-                            )
-                              ? "blue"
-                              : "")
-                          }
-                        >
-                          <p>Shipped</p>
-                        </div>
-                        <div
-                          className={
-                            "dot " +
-                            (["delivered", "out"].includes(order.order_status)
-                              ? "blue"
-                              : "")
-                          }
-                        >
-                          <p>Out For Delivery</p>
-                        </div>
-                        <div
-                          className={
-                            "dot " +
-                            (["delivered"].includes(order.order_status)
-                              ? "blue"
-                              : "")
-                          }
-                        >
-                          <p>Delivered</p>
+                        <div className="dots">
+                          <div
+                            className={
+                              "dot " +
+                              ([
+                                "packing",
+                                "shipped",
+                                "delivered",
+                                "out",
+                                "Packing",
+                              ].includes(order.order_status)
+                                ? "blue"
+                                : "")
+                            }
+                          >
+                            <p>Packing</p>
+                          </div>
+                          <div
+                            className={
+                              "dot " +
+                              (["shipped", "delivered", "out"].includes(
+                                order.order_status
+                              )
+                                ? "blue"
+                                : "")
+                            }
+                          >
+                            <p>Shipped</p>
+                          </div>
+                          <div
+                            className={
+                              "dot " +
+                              (["delivered", "out"].includes(order.order_status)
+                                ? "blue"
+                                : "")
+                            }
+                          >
+                            <p>Out For Delivery</p>
+                          </div>
+                          <div
+                            className={
+                              "dot " +
+                              (["delivered"].includes(order.order_status)
+                                ? "blue"
+                                : "")
+                            }
+                          >
+                            <p>Delivered</p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))
+                ))
             ) : (
               <div className="loader"></div>
             )}
