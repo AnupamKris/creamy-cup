@@ -89,7 +89,7 @@ const AdminDashboard = () => {
         <h3>Admin Dashboard</h3>
         <p onClick={() => setCurrentTab("orders")}>Orders</p>
         <p onClick={() => setCurrentTab("products")}>Products</p>
-        <p onClick={() => setCurrentTab("users")}>Users</p>
+        {/* <p onClick={() => setCurrentTab("users")}>Users</p> */}
       </div>
       <div className="container">
         {currentTab == "orders" && (
