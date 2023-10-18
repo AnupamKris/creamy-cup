@@ -28,6 +28,12 @@ const NavBar = () => {
         >
           {user.name ? <p>Profile</p> : <p>SignIn</p>}
         </Link>
+        <Link
+          onClick={() => (document.getElementById("nav-open").checked = false)}
+          to="/contact"
+        >
+          Contact
+        </Link>
       </div>
       <label className="nav-opener" htmlFor="nav-open">
         <ion-icon name="menu-outline"></ion-icon>
@@ -47,6 +53,9 @@ const NavBar = () => {
         </li>
         <li>
           <Link to="/shop">Shop</Link>
+        </li>
+        <li>
+          <Link to="/contact">Contact</Link>
         </li>
       </ul>
       <div className="functions">

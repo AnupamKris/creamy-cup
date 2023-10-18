@@ -8,6 +8,8 @@ const EditProduct = ({ product, setShowEdit, productid }) => {
   const [tags, setTags] = useState(product.tags);
   const [currentTag, setCurrentTag] = useState("");
   const [stock, setStock] = useState(product.stocks);
+  const [plantation, setPlantation] = useState(product.plantation);
+  const [ingredients, setIngredients] = useState(product.ingredients);
 
   const updateProduct = async () => {
     console.log("update", product);
@@ -19,6 +21,8 @@ const EditProduct = ({ product, setShowEdit, productid }) => {
       tags,
       product_id: productid,
       stocks: stock,
+      plantation,
+      ingredients,
     };
 
     data.stock = parseInt(data.stock);
@@ -52,7 +56,7 @@ const EditProduct = ({ product, setShowEdit, productid }) => {
           <div className="field">
             <label htmlFor="image">Image Path</label>
             <input
-              type="text"
+              type="file"
               value={image}
               id="image"
               onChange={(e) => setImage(e.target.value)}
@@ -67,6 +71,28 @@ const EditProduct = ({ product, setShowEdit, productid }) => {
               rows="10"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+          </div>
+          <div className="field">
+            <label htmlFor="">Plantation</label>
+            <textarea
+              name=""
+              id=""
+              cols="30"
+              rows="5"
+              value={plantation}
+              onChange={(e) => setPlantation(e.target.value)}
+            ></textarea>
+          </div>
+          <div className="field">
+            <label htmlFor="">Ingredients</label>
+            <textarea
+              name=""
+              id=""
+              cols="30"
+              rows="5"
+              value={ingredients}
+              onChange={(e) => setIngredients(e.target.value)}
             ></textarea>
           </div>
           <div className="field">

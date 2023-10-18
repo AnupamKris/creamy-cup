@@ -52,7 +52,7 @@ const Product = () => {
       })
     );
     alert("Item added to cart");
-    close();
+    closeProduct();
   };
 
   return (
@@ -89,12 +89,9 @@ const Product = () => {
                 </div>
 
                 <p className="sub">Plantation</p>
-                <p>
-                  Creamy Cup Coorg Coffee use finest Arabica beans sourced from
-                  the Mountain view plantation Coorg (Kodagu).
-                </p>
+                <p>{productData.plantation}</p>
                 <div className="sub">Ingredients</div>
-                <p>Coffee Beans, Natural Flavours.</p>
+                <p>{productData.ingredients}</p>
 
                 <div className="buttons">
                   <button onClick={addItemToCart}>Add to Cart</button>

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./App.scss";
-import About from "./pages/About.jsx";
+import Contact from "./pages/Contact.jsx";
 import Shop from "./pages/Shop.jsx";
 import Product from "./pages/Product.jsx";
 import SignIn from "./pages/SignIn.jsx";
@@ -34,8 +34,8 @@ const router = createBrowserRouter([
         element: <App />,
       },
       {
-        path: "about",
-        element: <About />,
+        path: "contact",
+        element: <Contact />,
       },
       {
         path: "shop",
