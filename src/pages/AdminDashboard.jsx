@@ -73,7 +73,7 @@ const AdminDashboard = () => {
   const getProducts = async () => {
     let res = await axios.get("https://dremerz-erp.com/creamycup/products");
     console.log(res);
-    setProducts(res.data);
+    setProducts(res.data.reverse());
   };
 
   useEffect(() => {

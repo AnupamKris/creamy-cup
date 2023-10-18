@@ -11,7 +11,24 @@ const AddProduct = ({ setShowAdd }) => {
   const [tags, setTags] = useState([]);
   const [stock, setStock] = useState(0);
   const [currentTag, setCurrentTag] = useState("");
-
+  const [plantation, setPlantation] = useState("");
+  const [ingredients, setIngredients] = useState("");
+  const [weight, setWeight] = useState("");
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+      axios
+        .post("https://dremerz-erp.com/creamycup/upload", formData)
+        .then((response) => {
+          setImage(response.data.imageUrl);
+        })
+        .catch((error) => {
+          console.error("Image upload error:", error);
+        });
+    }
+  };
   const addProduct = async () => {
     const data = {
       name,
@@ -21,6 +38,9 @@ const AddProduct = ({ setShowAdd }) => {
       image,
       stocks: stock,
       tags,
+      plantation,
+      ingredients,
+      weight,
     };
 
     let res = await axios.post("https://dremerz-erp.com/creamycup/addProduct", {
@@ -48,12 +68,21 @@ const AddProduct = ({ setShowAdd }) => {
             />
           </div>
           <div className="field">
-            <label htmlFor="image">Image Path</label>
+            <label htmlFor="image">Image Upload</label>
+            <input type="file" id="image" onChange={handleImageUpload} />
+          </div>
+          {image && (
+            <div className="field">
+              <label>Uploaded Image</label>
+              <img src={image} alt="Uploaded" style={{ maxWidth: "100%" }} />
+            </div>
+          )}
+          <div className="field">
+            <label htmlFor="">Weight</label>
             <input
               type="text"
-              value={image}
-              id="image"
-              onChange={(e) => setImage(e.target.value)}
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
             />
           </div>
           <div className="field">
@@ -65,6 +94,28 @@ const AddProduct = ({ setShowAdd }) => {
               rows="10"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+          </div>
+          <div className="field">
+            <label htmlFor="">Plantation</label>
+            <textarea
+              name=""
+              id=""
+              cols="30"
+              rows="5"
+              value={plantation}
+              onChange={(e) => setPlantation(e.target.value)}
+            ></textarea>
+          </div>
+          <div className="field">
+            <label htmlFor="">Ingredients</label>
+            <textarea
+              name=""
+              id=""
+              cols="30"
+              rows="5"
+              value={ingredients}
+              onChange={(e) => setIngredients(e.target.value)}
             ></textarea>
           </div>
           <div className="field">

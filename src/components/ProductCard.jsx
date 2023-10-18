@@ -14,7 +14,11 @@ const ProductCard = ({ product, openProduct, prodid }) => {
         <p>{product.description}</p>
         <div className="tags">
           {product.tags.map((tag) => {
-            return <span className="tag" key={tag}>{tag}</span>;
+            return (
+              <span className="tag" key={tag}>
+                {tag}
+              </span>
+            );
           })}
         </div>
         <div className="price">

@@ -10,6 +10,22 @@ const EditProduct = ({ product, setShowEdit, productid }) => {
   const [stock, setStock] = useState(product.stocks);
   const [plantation, setPlantation] = useState(product.plantation);
   const [ingredients, setIngredients] = useState(product.ingredients);
+  const [weight, setWeight] = useState(product.weight);
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+      axios
+        .post("https://dremerz-erp.com/creamycup/upload", formData)
+        .then((response) => {
+          setImage(response.data.imageUrl);
+        })
+        .catch((error) => {
+          console.error("Image upload error:", error);
+        });
+    }
+  };
 
   const updateProduct = async () => {
     console.log("update", product);
@@ -23,6 +39,7 @@ const EditProduct = ({ product, setShowEdit, productid }) => {
       stocks: stock,
       plantation,
       ingredients,
+      weight,
     };
 
     data.stock = parseInt(data.stock);
@@ -54,12 +71,21 @@ const EditProduct = ({ product, setShowEdit, productid }) => {
             />
           </div>
           <div className="field">
-            <label htmlFor="image">Image Path</label>
+            <label htmlFor="image">Image Upload</label>
+            <input type="file" id="image" onChange={handleImageUpload} />
+          </div>
+          {image && (
+            <div className="field">
+              <label>Uploaded Image</label>
+              <img src={image} alt="Uploaded" style={{ maxWidth: "100%" }} />
+            </div>
+          )}
+          <div className="field">
+            <label htmlFor="">Weight</label>
             <input
               type="text"
-              value={image}
-              id="image"
-              onChange={(e) => setImage(e.target.value)}
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
             />
           </div>
           <div className="field">
