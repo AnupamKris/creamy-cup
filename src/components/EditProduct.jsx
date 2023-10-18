@@ -56,7 +56,7 @@ const EditProduct = ({ product, setShowEdit, productid }) => {
           <div className="field">
             <label htmlFor="image">Image Path</label>
             <input
-              type="file"
+              type="text"
               value={image}
               id="image"
               onChange={(e) => setImage(e.target.value)}
