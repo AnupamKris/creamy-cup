@@ -4,7 +4,7 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState: {
     cartItems: [],
-    deliveryType: "standard",
+    deliveryType: "express",
   },
   reducers: {
     addToCart: (state, action) => {

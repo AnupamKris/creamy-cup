@@ -34,7 +34,7 @@ const AdminDashboard = () => {
   const getOrders = async () => {
     let res = await axios.get("https://dremerz-erp.com/creamycup/orders");
     console.log(res);
-    setOrders(res.data);
+    setOrders(res.data.reverse());
   };
 
   const changeOrderStatus = async (e, orderid) => {
