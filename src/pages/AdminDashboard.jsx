@@ -5,7 +5,7 @@ import EditProduct from "../components/EditProduct";
 import AddProduct from "../components/AddProduct";
 
 const AdminDashboard = () => {
-  const [currentTab, setCurrentTab] = useState("orders");
+  const [currentTab, setCurrentTab] = useState("login");
   const [currentOrderStatusTab, setCurrentOrderStatusTab] = useState("all");
   const [orders, setOrders] = useState([]);
 
@@ -13,6 +13,10 @@ const AdminDashboard = () => {
   const [editProduct, setEditProduct] = useState({});
   const [showAdd, setShowAdd] = useState(false);
   const [products, setProducts] = useState({});
+  const [adminToken, setAdminToken] = useState("");
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const [filteredOrders, setFilteredOrders] = useState([orders]);
 
@@ -44,6 +48,12 @@ const AdminDashboard = () => {
       {
         order_id: orderid,
         order_status: e.target.value,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: adminToken,
+        },
       }
     );
     console.log(res.status);
@@ -61,6 +71,12 @@ const AdminDashboard = () => {
       "https://dremerz-erp.com/creamycup/deleteProduct",
       {
         product_id: productid,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: adminToken,
+        },
       }
     );
     console.log(res.status);
@@ -76,6 +92,18 @@ const AdminDashboard = () => {
     setProducts(res.data.reverse());
   };
 
+  const loginAdmin = async () => {
+    let res = await axios.post("https://dremerz-erp.com/creamycup/adminLogin", {
+      username,
+      password,
+    });
+    console.log(res);
+    if (res.status == 201) {
+      setAdminToken(res.data.token);
+      setCurrentTab("orders");
+    }
+  };
+
   useEffect(() => {
     // getOrders();
     getProducts();
@@ -85,13 +113,36 @@ const AdminDashboard = () => {
 
   return (
     <div className="dashboard">
-      <div className="sidebar">
-        <h3>Admin Dashboard</h3>
-        <p onClick={() => setCurrentTab("orders")}>Orders</p>
-        <p onClick={() => setCurrentTab("products")}>Products</p>
-        {/* <p onClick={() => setCurrentTab("users")}>Users</p> */}
-      </div>
+      {currentTab != "login" && (
+        <div className="sidebar">
+          <h3>Admin Dashboard</h3>
+          <p onClick={() => setCurrentTab("orders")}>Orders</p>
+          <p onClick={() => setCurrentTab("products")}>Products</p>
+          {/* <p onClick={() => setCurrentTab("users")}>Users</p> */}
+        </div>
+      )}
       <div className="container">
+        {currentTab == "login" && (
+          <div className="login">
+            <div className="field">
+              <label htmlFor="">Username</label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className="field">
+              <label htmlFor="">Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <button onClick={loginAdmin}>Login</button>
+          </div>
+        )}
         {currentTab == "orders" && (
           <div className="orders">
             <div className="tabs">

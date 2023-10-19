@@ -43,9 +43,18 @@ const AddProduct = ({ setShowAdd }) => {
       weight,
     };
 
-    let res = await axios.post("https://dremerz-erp.com/creamycup/addProduct", {
-      data,
-    });
+    let res = await axios.post(
+      "https://dremerz-erp.com/creamycup/addProduct",
+      {
+        data,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: adminToken,
+        },
+      }
+    );
     console.log(res);
     if (res.status == 201) {
       alert("Product added");

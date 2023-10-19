@@ -47,6 +47,12 @@ const EditProduct = ({ product, setShowEdit, productid }) => {
       "https://dremerz-erp.com/creamycup/updateProduct",
       {
         data,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: adminToken,
+        },
       }
     );
     console.log(res.status);
