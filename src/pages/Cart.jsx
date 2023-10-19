@@ -103,15 +103,7 @@ const Cart = () => {
               <p>PAYMENT</p>
             </div>
             <div className="delivery">
-              <span
-                onClick={() => setDeliveryTypee("standard")}
-                className={deliveryType == "standard" ? "selected" : ""}
-              >
-                <div className="between">
-                  <p>Cash On Delivery</p> <p>FREE</p>
-                </div>
-                <p>3-5 working days</p>
-              </span>
+             
               <span
                 onClick={() => setDeliveryTypee("express")}
                 className={deliveryType == "express" ? "selected" : ""}

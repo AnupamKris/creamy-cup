@@ -45,7 +45,7 @@ const NavBar = () => {
           navigate("/");
         }}
       >
-        <img src="/logo.svg" alt="" />
+        <img src="/logo.png" alt="" />
       </div>
       <ul>
         <li>

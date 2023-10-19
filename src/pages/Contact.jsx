@@ -6,18 +6,37 @@ const contact = () => {
         <h3>Contact Us</h3>
       </div>
 
-      <div className="address">
-        <img src="/map.png" alt="" />
+      <div className="address" style={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:"30px",padding:"20px",width:"100%"}}>
+
+
+
+
         <div className="details">
           <h4>Address</h4>
-          <p>Creamy Cup Coffee, Bangalore, India</p>
+          <p>fssai Lic.No. 11219319000207</p>
+          <p>MRS BEAN, Sunticoppa, Madikeri 571237, Karnataka, India</p>
           <h4>Email</h4>
-          <p>support@creamycup.co</p>
-          <p>support@creamycup.co</p>
-          <p>support@creamycup.co</p>
+
+          <p><a style={{textDecoration:"none",color:"black" }} href="mailto:contact@creamycup.co">contact@creamycup.co</a></p>
+          <p><a style={{textDecoration:"none",color:"black" }} href="mailto:Sinancoorg35@gmail.com">Sinancoorg35@gmail.com</a></p>
+
           <h4>Phone</h4>
-          <p>+91 12345 65821</p>
+          <p><a style={{textDecoration:"none",color:"black" }} href="tel:917619494452">+91 76194 94452</a></p>
         </div>
+
+        <div>
+ <iframe
+ id="if"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7791.91682493632!2d75.81823812757976!3d12.452490552155437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba5073fbaab4009%3A0x7f713bcc70dde1ba!2sSuntikoppa%2C%20Karnataka%20571237!5e0!3m2!1sen!2sin!4v1697706028370!5m2!1sen!2sin"
+     
+      style={{ border: 0 }}
+      allowFullScreen=""
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+    ></iframe>
+        </div>
+     
+
       </div>
       <div className="faq">
         <h2>Frequently Asked Questions.</h2>
@@ -38,11 +57,11 @@ const contact = () => {
         </div>
 
         <div className="q">
-          <h3>Q. Are the ingredients natural</h3>
+          <h3>Q. Are the ingredients natural?</h3>
           <p>
             All the Ingredients are natural and organic. We don't use any
             artificial flavours or preservatives. We carefully pick it from the
-            coorg region
+            coorg region.
           </p>
         </div>
       </div>
