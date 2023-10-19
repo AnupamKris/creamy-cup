@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-const EditProduct = ({ product, setShowEdit, productid }) => {
+const EditProduct = ({ product, setShowEdit, productid, adminToken }) => {
   const [name, setName] = useState(product.name);
   const [description, setDescription] = useState(product.description);
   const [price, setPrice] = useState(product.price);

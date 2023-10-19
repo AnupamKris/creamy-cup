@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-const AddProduct = ({ setShowAdd }) => {
+const AddProduct = ({ setShowAdd, adminToken }) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");

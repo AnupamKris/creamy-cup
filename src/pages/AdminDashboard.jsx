@@ -266,9 +266,12 @@ const AdminDashboard = () => {
             product={products.filter((product) => product.id == editProduct)[0]}
             setShowEdit={setShowEdit}
             productid={editProduct}
+            adminToken={adminToken}
           />
         )}
-        {showAdd && <AddProduct setShowAdd={setShowAdd} />}
+        {showAdd && (
+          <AddProduct setShowAdd={setShowAdd} adminToken={adminToken} />
+        )}
       </div>
     </div>
   );
