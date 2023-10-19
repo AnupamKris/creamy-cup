@@ -49,7 +49,9 @@ const Cart = () => {
   };
   return (
     <div className="cart">
-      {Object.keys(products).length && (
+      {Object.keys(products).length == 0 ? (
+        <div className="loader"></div>
+      ) : (
         <div className="container">
           <div className="cart-holder">
             <div className="heading">
@@ -103,7 +105,6 @@ const Cart = () => {
               <p>PAYMENT</p>
             </div>
             <div className="delivery">
-             
               <span
                 onClick={() => setDeliveryTypee("express")}
                 className={deliveryType == "express" ? "selected" : ""}
