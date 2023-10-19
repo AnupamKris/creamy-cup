@@ -153,7 +153,7 @@ const profile = () => {
         {currentTab == "orders" && (
           <div className="orders">
             <h3>My Orders</h3>
-            {orders ? (
+            {orders.length != 0 ? (
               orders
                 .filter((order) => order.order_status != "payment")
                 .map((order, index) => (
@@ -168,20 +168,23 @@ const profile = () => {
                           "items " + (expand == index ? "expanded-items" : "")
                         }
                       >
-                        {order.products.map((item) => (
-                          <div className="item" key={item.id}>
-                            <div className="image">
-                              <img
-                                src={getProductFromId(item.id).image}
-                                alt=""
-                              />
-                            </div>
-                            <div className="details">
-                              <p>{getProductFromId(item.id).name}</p>
-                              <p>Qty : {item.quantity}</p>
-                            </div>
-                          </div>
-                        ))}
+                        {order.products.map(
+                          (item) =>
+                            getProductFromId(item.id) && (
+                              <div className="item" key={item.id}>
+                                <div className="image">
+                                  <img
+                                    src={getProductFromId(item.id).image}
+                                    alt=""
+                                  />
+                                </div>
+                                <div className="details">
+                                  <p>{getProductFromId(item.id).name}</p>
+                                  <p>Qty : {item.quantity}</p>
+                                </div>
+                              </div>
+                            )
+                        )}
                       </div>
 
                       <div className="titular">
