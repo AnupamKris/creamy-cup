@@ -34,6 +34,18 @@ const NavBar = () => {
         >
           Contact
         </Link>
+        <Link
+          onClick={() => (document.getElementById("nav-open").checked = false)}
+          to="/about"
+        >
+          About Us
+        </Link>
+        <Link
+          onClick={() => (document.getElementById("nav-open").checked = false)}
+          to="/terms"
+        >
+          Terms
+        </Link>
       </div>
       <label className="nav-opener" htmlFor="nav-open">
         <ion-icon name="menu-outline"></ion-icon>
@@ -56,6 +68,12 @@ const NavBar = () => {
         </li>
         <li>
           <Link to="/contact">Contact</Link>
+        </li>
+        <li>
+          <Link to="/about">About Us</Link>
+        </li>
+        <li>
+          <Link to="/terms">Terms</Link>
         </li>
       </ul>
       <div className="functions">

@@ -9,8 +9,9 @@ import SignIn from "./pages/SignIn.jsx";
 import Root from "./pages/Root.jsx";
 import Profile from "./pages/Profile.jsx";
 import CheckOut from "./pages/CheckOut.jsx";
+import Terms from "./pages/Terms.jsx";
 import Cart from "./pages/Cart.jsx";
-
+import About from "./pages/About.jsx";
 import AdminLogin from "./pages/AdminLogin.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
 import Admin from "./pages/Admin.jsx";
@@ -42,8 +43,12 @@ const router = createBrowserRouter([
         element: <Shop />,
       },
       {
-        path: "contact",
-        element: <h1>Contact</h1>,
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "terms",
+        element: <Terms />,
       },
       {
         path: "product/:product",
