@@ -137,7 +137,7 @@ const CheckOut = () => {
     );
 
     let options = {
-      key: "rzp_test_NApl1QmxYvCYFj",
+      key: "rzp_live_yp4KolVjEyCyE5",
       amount: order.data.amount,
       currency: "INR",
       name: "Creamy Cup Coffee",
