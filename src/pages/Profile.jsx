@@ -31,7 +31,7 @@ const profile = () => {
 
     try {
       let res = await axios.post(
-        "https://dremerz-erp.com/creamycup/changePassword",
+          "https://dremerz-erp.com/creamycup/changePassword",
         {
           password,
           newPassword,
