@@ -20,7 +20,7 @@ const contact = () => {
         <div className="details">
           <h4>Address</h4>
           <p>fssai Lic.No. 11219319000207</p>
-          <p>MRS BEAN, Sunticoppa, Madikeri 571237, Karnataka, India</p>
+          <p>MRS BEAN, Suntikoppa, Madikeri 571237, Karnataka, India</p>
           <h4>Email</h4>
 
           <p>
