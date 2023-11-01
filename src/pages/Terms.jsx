@@ -26,11 +26,18 @@ const Terms = () => {
           Coorg region.
         </p>
 
-        <h4>Privacy Policy</h4>
+        <h2>Privacy Policy</h2>
+        <h4>Order Processing Time</h4>
         <p>
-          The Privacy Policy details the collection, usage, and sharing of
-          personal information when customers visit or make purchases on
-          creamycup.co.
+          Orders are instantly processed and an email notification is sent to
+          the customer. The order is then shipped within 2-3 business days. The
+          customer is notified via email once the order is shipped.
+        </p>
+        <h4>Order Delivery Time</h4>
+        <p>
+          Under normal circumstances, orders are delivered within 5-7 business
+          days. However, underlying factors such as weather conditions, natural
+          calamities, and other unforeseen circumstances may cause delays.
         </p>
 
         <h4>Information Collection</h4>
