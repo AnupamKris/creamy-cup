@@ -189,30 +189,36 @@ const AdminDashboard = () => {
                   <p>Amount</p>
                   <p>Order Status</p>
                 </div>
-                {filteredOrders.map((order) => {
-                  return (
-                    <div className="order" key={order.id}>
-                      <p>{order.time}</p>
-                      <p>{order.email}</p>
+                {filteredOrders
+                  .filter(
+                    (product) => product.payment_status !== "Payment Pending"
+                  )
+                  .map((order) => {
+                    return (
+                      <div className="order" key={order.id}>
+                        <p>{order.time}</p>
+                        <p>{order.email}</p>
 
-                      <p>{order.payment_status}</p>
-                      <p>{order.amount / 100}</p>
-                      <p>
-                        <select
-                          name="orderstatus"
-                          id=""
-                          value={order.order_status}
-                          onChange={(e) => changeOrderStatus(e, order.order_id)}
-                        >
-                          <option value="packing">Packing</option>
-                          <option value="shipped">Shipped</option>
-                          <option value="out">Out For Delivery</option>
-                          <option value="delivered">Delivered</option>
-                        </select>
-                      </p>
-                    </div>
-                  );
-                })}
+                        <p>{order.payment_status}</p>
+                        <p>{order.amount / 100}</p>
+                        <p>
+                          <select
+                            name="orderstatus"
+                            id=""
+                            value={order.order_status}
+                            onChange={(e) =>
+                              changeOrderStatus(e, order.order_id)
+                            }
+                          >
+                            <option value="packing">Packing</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="out">Out For Delivery</option>
+                            <option value="delivered">Delivered</option>
+                          </select>
+                        </p>
+                      </div>
+                    );
+                  })}
               </div>
             )}
           </div>
